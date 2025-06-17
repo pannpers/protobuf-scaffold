@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package api;
+
+import "entity/user.proto";
+
+option go_package = "github.com/pannpers/protobuf-scaffold/gen/go/api";
+
+// User service provides operations for managing users
+service UserService {
+  // GetUser retrieves a user by ID
+  rpc GetUser(GetUserRequest) returns (GetUserResponse);
+
+  // CreateUser creates a new user
+  rpc CreateUser(CreateUserRequest) returns (CreateUserResponse);
+}
+
+// GetUserRequest is the request message for GetUser
+message GetUserRequest {
+  // The unique identifier of the user to retrieve
+  string user_id = 1;
+}
+
+// GetUserResponse is the response message for GetUser
+message GetUserResponse {
+  // The user resource
+  entity.User user = 1;
+}
+
+// CreateUserRequest is the request message for CreateUser
+message CreateUserRequest {
+  // The user resource to create
+  entity.User user = 1;
+}
+
+// CreateUserResponse is the response message for CreateUser
+message CreateUserResponse {
+  // The created user resource
+  entity.User user = 1;
+}

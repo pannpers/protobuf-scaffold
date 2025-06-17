@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package entity;
+
+option go_package = "github.com/pannpers/protobuf-scaffold/gen/go/entity";
+
+// User entity
+message User {
+  UserId id = 1;
+  UserName name = 2;
+  UserEmail email = 3;
+}
+
+// User ID value object
+message UserId {
+  string value = 1;
+}
+
+// User name value object
+message UserName {
+  string value = 1;
+}
+
+// User email value object
+message UserEmail {
+  string value = 1;
+}

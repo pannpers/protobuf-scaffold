@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package entity;
+
+option go_package = "github.com/pannpers/protobuf-scaffold/gen/go/entity";
+
+// Post entity
+message Post {
+  PostId id = 1;
+  PostTitle title = 2;
+}
+
+// Post ID value object
+message PostId {
+  string value = 1;
+}
+
+// Post title value object
+message PostTitle {
+  string value = 1;
+}
