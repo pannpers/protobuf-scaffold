@@ -1,0 +1,47 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-added-large-files
+
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: v3.1.0
+    hooks:
+      - id: prettier
+        types_or: [javascript, jsx, ts, tsx, json]
+
+  - repo: local
+    hooks:
+      - id: buf-lint
+        name: buf lint
+        entry: buf lint
+        language: system
+        types: [proto]
+        pass_filenames: true
+      - id: buf-format
+        name: buf format
+        entry: buf format -w
+        language: system
+        types: [proto]
+        pass_filenames: true
+      - id: buf-breaking
+        name: buf breaking
+        entry: buf breaking --against '.git#branch=main'
+        language: system
+        types: [proto]
+        pass_filenames: false
+      - id: buf-generate-push
+        name: buf generate before push
+        entry: buf generate
+        language: system
+        pass_filenames: false
+        stages: [push]
+      - id: auto-commit-generated-push
+        name: Auto-commit generated files before push
+        entry: bash -c 'git add gen/ && git diff --cached --quiet || git commit -m "Auto-commit generated files from buf generate"'
+        language: system
+        pass_filenames: false
+        stages: [push]
