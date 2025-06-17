@@ -1,0 +1,18 @@
+version: v1
+managed:
+  enabled: true
+  go_package_prefix:
+    default: github.com/pannpers/protobuf-scaffold/gen/go
+plugins:
+  - plugin: buf.build/protocolbuffers/go
+    out: gen/go
+    opt: paths=source_relative
+  - plugin: buf.build/grpc/go
+    out: gen/go
+    opt: paths=source_relative
+  - plugin: buf.build/bufbuild/es
+    out: gen/typescript
+    opt: target=ts
+  - plugin: buf.build/bufbuild/connect-es
+    out: gen/typescript
+    opt: target=ts
