@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package api;
 
-import "entity/user.proto";
+import "proto/entity/user.proto";
 
 option go_package = "github.com/pannpers/protobuf-scaffold/gen/go/api";
 

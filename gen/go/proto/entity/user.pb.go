@@ -231,9 +231,9 @@ const file_proto_entity_user_proto_rawDesc = "" +
 	"\bUserName\x12\x14\n" +
 	"\x05value\x18\x01 \x01(\tR\x05value\"!\n" +
 	"\tUserEmail\x12\x14\n" +
-	"\x05value\x18\x01 \x01(\tR\x05valueB\x87\x01\n" +
+	"\x05value\x18\x01 \x01(\tR\x05valueB\x8a\x01\n" +
 	"\n" +
-	"com.entityB\tUserProtoP\x01Z6github.com/pannpers/protobuf-scaffold/gen/proto/entity\xa2\x02\x03EXX\xaa\x02\x06Entity\xca\x02\x06Entity\xe2\x02\x12Entity\\GPBMetadata\xea\x02\x06Entityb\x06proto3"
+	"com.entityB\tUserProtoP\x01Z9github.com/pannpers/protobuf-scaffold/gen/go/proto/entity\xa2\x02\x03EXX\xaa\x02\x06Entity\xca\x02\x06Entity\xe2\x02\x12Entity\\GPBMetadata\xea\x02\x06Entityb\x06proto3"
 
 var (
 	file_proto_entity_user_proto_rawDescOnce sync.Once
