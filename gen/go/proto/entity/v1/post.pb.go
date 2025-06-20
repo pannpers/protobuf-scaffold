@@ -4,7 +4,7 @@
 // 	protoc        (unknown)
 // source: proto/entity/v1/post.proto
 
-package entity
+package v1
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -175,7 +175,7 @@ const file_proto_entity_v1_post_proto_rawDesc = "" +
 	"\x06PostId\x12\x14\n" +
 	"\x05value\x18\x01 \x01(\tR\x05value\"!\n" +
 	"\tPostTitle\x12\x14\n" +
-	"\x05value\x18\x01 \x01(\tR\x05valueB5Z3github.com/pannpers/protobuf-scaffold/gen/go/entityb\x06proto3"
+	"\x05value\x18\x01 \x01(\tR\x05valueB>Z<github.com/pannpers/protobuf-scaffold/gen/go/proto/entity/v1b\x06proto3"
 
 var (
 	file_proto_entity_v1_post_proto_rawDescOnce sync.Once

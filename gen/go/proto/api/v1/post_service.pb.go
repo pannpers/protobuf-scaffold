@@ -4,10 +4,10 @@
 // 	protoc        (unknown)
 // source: proto/api/v1/post_service.proto
 
-package api
+package v1
 
 import (
-	entity "github.com/pannpers/protobuf-scaffold/gen/go/entity"
+	v1 "github.com/pannpers/protobuf-scaffold/gen/go/proto/entity/v1"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -72,7 +72,7 @@ func (x *GetPostRequest) GetPostId() string {
 type GetPostResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The post resource
-	Post          *entity.Post `protobuf:"bytes,1,opt,name=post,proto3" json:"post,omitempty"`
+	Post          *v1.Post `protobuf:"bytes,1,opt,name=post,proto3" json:"post,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -107,7 +107,7 @@ func (*GetPostResponse) Descriptor() ([]byte, []int) {
 	return file_proto_api_v1_post_service_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *GetPostResponse) GetPost() *entity.Post {
+func (x *GetPostResponse) GetPost() *v1.Post {
 	if x != nil {
 		return x.Post
 	}
@@ -118,7 +118,7 @@ func (x *GetPostResponse) GetPost() *entity.Post {
 type CreatePostRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The post resource to create
-	Post          *entity.Post `protobuf:"bytes,1,opt,name=post,proto3" json:"post,omitempty"`
+	Post          *v1.Post `protobuf:"bytes,1,opt,name=post,proto3" json:"post,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -153,7 +153,7 @@ func (*CreatePostRequest) Descriptor() ([]byte, []int) {
 	return file_proto_api_v1_post_service_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *CreatePostRequest) GetPost() *entity.Post {
+func (x *CreatePostRequest) GetPost() *v1.Post {
 	if x != nil {
 		return x.Post
 	}
@@ -164,7 +164,7 @@ func (x *CreatePostRequest) GetPost() *entity.Post {
 type CreatePostResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The created post resource
-	Post          *entity.Post `protobuf:"bytes,1,opt,name=post,proto3" json:"post,omitempty"`
+	Post          *v1.Post `protobuf:"bytes,1,opt,name=post,proto3" json:"post,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -199,7 +199,7 @@ func (*CreatePostResponse) Descriptor() ([]byte, []int) {
 	return file_proto_api_v1_post_service_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *CreatePostResponse) GetPost() *entity.Post {
+func (x *CreatePostResponse) GetPost() *v1.Post {
 	if x != nil {
 		return x.Post
 	}
@@ -222,7 +222,7 @@ const file_proto_api_v1_post_service_proto_rawDesc = "" +
 	"\vPostService\x124\n" +
 	"\aGetPost\x12\x13.api.GetPostRequest\x1a\x14.api.GetPostResponse\x12=\n" +
 	"\n" +
-	"CreatePost\x12\x16.api.CreatePostRequest\x1a\x17.api.CreatePostResponseB2Z0github.com/pannpers/protobuf-scaffold/gen/go/apib\x06proto3"
+	"CreatePost\x12\x16.api.CreatePostRequest\x1a\x17.api.CreatePostResponseB;Z9github.com/pannpers/protobuf-scaffold/gen/go/proto/api/v1b\x06proto3"
 
 var (
 	file_proto_api_v1_post_service_proto_rawDescOnce sync.Once
@@ -242,7 +242,7 @@ var file_proto_api_v1_post_service_proto_goTypes = []any{
 	(*GetPostResponse)(nil),    // 1: api.GetPostResponse
 	(*CreatePostRequest)(nil),  // 2: api.CreatePostRequest
 	(*CreatePostResponse)(nil), // 3: api.CreatePostResponse
-	(*entity.Post)(nil),        // 4: entity.v1.Post
+	(*v1.Post)(nil),            // 4: entity.v1.Post
 }
 var file_proto_api_v1_post_service_proto_depIdxs = []int32{
 	4, // 0: api.GetPostResponse.post:type_name -> entity.v1.Post

@@ -2,13 +2,13 @@
 //
 // Source: proto/api/v1/post_service.proto
 
-package apiconnect
+package v1connect
 
 import (
 	context "context"
 	errors "errors"
 	connect_go "github.com/bufbuild/connect-go"
-	api "github.com/pannpers/protobuf-scaffold/gen/go/api"
+	v1 "github.com/pannpers/protobuf-scaffold/gen/go/proto/api/v1"
 	http "net/http"
 	strings "strings"
 )
@@ -42,9 +42,9 @@ const (
 // PostServiceClient is a client for the api.PostService service.
 type PostServiceClient interface {
 	// GetPost retrieves a post by ID
-	GetPost(context.Context, *connect_go.Request[api.GetPostRequest]) (*connect_go.Response[api.GetPostResponse], error)
+	GetPost(context.Context, *connect_go.Request[v1.GetPostRequest]) (*connect_go.Response[v1.GetPostResponse], error)
 	// CreatePost creates a new post
-	CreatePost(context.Context, *connect_go.Request[api.CreatePostRequest]) (*connect_go.Response[api.CreatePostResponse], error)
+	CreatePost(context.Context, *connect_go.Request[v1.CreatePostRequest]) (*connect_go.Response[v1.CreatePostResponse], error)
 }
 
 // NewPostServiceClient constructs a client for the api.PostService service. By default, it uses the
@@ -57,12 +57,12 @@ type PostServiceClient interface {
 func NewPostServiceClient(httpClient connect_go.HTTPClient, baseURL string, opts ...connect_go.ClientOption) PostServiceClient {
 	baseURL = strings.TrimRight(baseURL, "/")
 	return &postServiceClient{
-		getPost: connect_go.NewClient[api.GetPostRequest, api.GetPostResponse](
+		getPost: connect_go.NewClient[v1.GetPostRequest, v1.GetPostResponse](
 			httpClient,
 			baseURL+PostServiceGetPostProcedure,
 			opts...,
 		),
-		createPost: connect_go.NewClient[api.CreatePostRequest, api.CreatePostResponse](
+		createPost: connect_go.NewClient[v1.CreatePostRequest, v1.CreatePostResponse](
 			httpClient,
 			baseURL+PostServiceCreatePostProcedure,
 			opts...,
@@ -72,26 +72,26 @@ func NewPostServiceClient(httpClient connect_go.HTTPClient, baseURL string, opts
 
 // postServiceClient implements PostServiceClient.
 type postServiceClient struct {
-	getPost    *connect_go.Client[api.GetPostRequest, api.GetPostResponse]
-	createPost *connect_go.Client[api.CreatePostRequest, api.CreatePostResponse]
+	getPost    *connect_go.Client[v1.GetPostRequest, v1.GetPostResponse]
+	createPost *connect_go.Client[v1.CreatePostRequest, v1.CreatePostResponse]
 }
 
 // GetPost calls api.PostService.GetPost.
-func (c *postServiceClient) GetPost(ctx context.Context, req *connect_go.Request[api.GetPostRequest]) (*connect_go.Response[api.GetPostResponse], error) {
+func (c *postServiceClient) GetPost(ctx context.Context, req *connect_go.Request[v1.GetPostRequest]) (*connect_go.Response[v1.GetPostResponse], error) {
 	return c.getPost.CallUnary(ctx, req)
 }
 
 // CreatePost calls api.PostService.CreatePost.
-func (c *postServiceClient) CreatePost(ctx context.Context, req *connect_go.Request[api.CreatePostRequest]) (*connect_go.Response[api.CreatePostResponse], error) {
+func (c *postServiceClient) CreatePost(ctx context.Context, req *connect_go.Request[v1.CreatePostRequest]) (*connect_go.Response[v1.CreatePostResponse], error) {
 	return c.createPost.CallUnary(ctx, req)
 }
 
 // PostServiceHandler is an implementation of the api.PostService service.
 type PostServiceHandler interface {
 	// GetPost retrieves a post by ID
-	GetPost(context.Context, *connect_go.Request[api.GetPostRequest]) (*connect_go.Response[api.GetPostResponse], error)
+	GetPost(context.Context, *connect_go.Request[v1.GetPostRequest]) (*connect_go.Response[v1.GetPostResponse], error)
 	// CreatePost creates a new post
-	CreatePost(context.Context, *connect_go.Request[api.CreatePostRequest]) (*connect_go.Response[api.CreatePostResponse], error)
+	CreatePost(context.Context, *connect_go.Request[v1.CreatePostRequest]) (*connect_go.Response[v1.CreatePostResponse], error)
 }
 
 // NewPostServiceHandler builds an HTTP handler from the service implementation. It returns the path
@@ -125,10 +125,10 @@ func NewPostServiceHandler(svc PostServiceHandler, opts ...connect_go.HandlerOpt
 // UnimplementedPostServiceHandler returns CodeUnimplemented from all methods.
 type UnimplementedPostServiceHandler struct{}
 
-func (UnimplementedPostServiceHandler) GetPost(context.Context, *connect_go.Request[api.GetPostRequest]) (*connect_go.Response[api.GetPostResponse], error) {
+func (UnimplementedPostServiceHandler) GetPost(context.Context, *connect_go.Request[v1.GetPostRequest]) (*connect_go.Response[v1.GetPostResponse], error) {
 	return nil, connect_go.NewError(connect_go.CodeUnimplemented, errors.New("api.PostService.GetPost is not implemented"))
 }
 
-func (UnimplementedPostServiceHandler) CreatePost(context.Context, *connect_go.Request[api.CreatePostRequest]) (*connect_go.Response[api.CreatePostResponse], error) {
+func (UnimplementedPostServiceHandler) CreatePost(context.Context, *connect_go.Request[v1.CreatePostRequest]) (*connect_go.Response[v1.CreatePostResponse], error) {
 	return nil, connect_go.NewError(connect_go.CodeUnimplemented, errors.New("api.PostService.CreatePost is not implemented"))
 }

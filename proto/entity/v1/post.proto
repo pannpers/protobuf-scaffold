@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package entity.v1;
 
-option go_package = "github.com/pannpers/protobuf-scaffold/gen/go/entity";
+option go_package = "github.com/pannpers/protobuf-scaffold/gen/go/proto/entity/v1";
 
 // Post entity
 message Post {

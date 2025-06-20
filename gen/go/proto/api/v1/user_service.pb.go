@@ -4,10 +4,10 @@
 // 	protoc        (unknown)
 // source: proto/api/v1/user_service.proto
 
-package api
+package v1
 
 import (
-	entity "github.com/pannpers/protobuf-scaffold/gen/go/entity"
+	v1 "github.com/pannpers/protobuf-scaffold/gen/go/proto/entity/v1"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -72,7 +72,7 @@ func (x *GetUserRequest) GetUserId() string {
 type GetUserResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The user resource
-	User          *entity.User `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
+	User          *v1.User `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -107,7 +107,7 @@ func (*GetUserResponse) Descriptor() ([]byte, []int) {
 	return file_proto_api_v1_user_service_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *GetUserResponse) GetUser() *entity.User {
+func (x *GetUserResponse) GetUser() *v1.User {
 	if x != nil {
 		return x.User
 	}
@@ -118,7 +118,7 @@ func (x *GetUserResponse) GetUser() *entity.User {
 type CreateUserRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The user resource to create
-	User          *entity.User `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
+	User          *v1.User `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -153,7 +153,7 @@ func (*CreateUserRequest) Descriptor() ([]byte, []int) {
 	return file_proto_api_v1_user_service_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *CreateUserRequest) GetUser() *entity.User {
+func (x *CreateUserRequest) GetUser() *v1.User {
 	if x != nil {
 		return x.User
 	}
@@ -164,7 +164,7 @@ func (x *CreateUserRequest) GetUser() *entity.User {
 type CreateUserResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The created user resource
-	User          *entity.User `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
+	User          *v1.User `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -199,7 +199,7 @@ func (*CreateUserResponse) Descriptor() ([]byte, []int) {
 	return file_proto_api_v1_user_service_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *CreateUserResponse) GetUser() *entity.User {
+func (x *CreateUserResponse) GetUser() *v1.User {
 	if x != nil {
 		return x.User
 	}
@@ -222,7 +222,7 @@ const file_proto_api_v1_user_service_proto_rawDesc = "" +
 	"\vUserService\x124\n" +
 	"\aGetUser\x12\x13.api.GetUserRequest\x1a\x14.api.GetUserResponse\x12=\n" +
 	"\n" +
-	"CreateUser\x12\x16.api.CreateUserRequest\x1a\x17.api.CreateUserResponseB2Z0github.com/pannpers/protobuf-scaffold/gen/go/apib\x06proto3"
+	"CreateUser\x12\x16.api.CreateUserRequest\x1a\x17.api.CreateUserResponseB;Z9github.com/pannpers/protobuf-scaffold/gen/go/proto/api/v1b\x06proto3"
 
 var (
 	file_proto_api_v1_user_service_proto_rawDescOnce sync.Once
@@ -242,7 +242,7 @@ var file_proto_api_v1_user_service_proto_goTypes = []any{
 	(*GetUserResponse)(nil),    // 1: api.GetUserResponse
 	(*CreateUserRequest)(nil),  // 2: api.CreateUserRequest
 	(*CreateUserResponse)(nil), // 3: api.CreateUserResponse
-	(*entity.User)(nil),        // 4: entity.User
+	(*v1.User)(nil),            // 4: entity.User
 }
 var file_proto_api_v1_user_service_proto_depIdxs = []int32{
 	4, // 0: api.GetUserResponse.user:type_name -> entity.User

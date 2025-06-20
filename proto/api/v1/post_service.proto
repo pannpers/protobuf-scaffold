@@ -5,7 +5,7 @@ package api;
 import "proto/entity/v1/post.proto";
 import "proto/entity/v1/user.proto";
 
-option go_package = "github.com/pannpers/protobuf-scaffold/gen/go/api";
+option go_package = "github.com/pannpers/protobuf-scaffold/gen/go/proto/api/v1";
 
 // Post service provides operations for managing posts
 service PostService {

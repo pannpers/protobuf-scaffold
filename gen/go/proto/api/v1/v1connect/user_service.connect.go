@@ -2,13 +2,13 @@
 //
 // Source: proto/api/v1/user_service.proto
 
-package apiconnect
+package v1connect
 
 import (
 	context "context"
 	errors "errors"
 	connect_go "github.com/bufbuild/connect-go"
-	api "github.com/pannpers/protobuf-scaffold/gen/go/api"
+	v1 "github.com/pannpers/protobuf-scaffold/gen/go/proto/api/v1"
 	http "net/http"
 	strings "strings"
 )
@@ -42,9 +42,9 @@ const (
 // UserServiceClient is a client for the api.UserService service.
 type UserServiceClient interface {
 	// GetUser retrieves a user by ID
-	GetUser(context.Context, *connect_go.Request[api.GetUserRequest]) (*connect_go.Response[api.GetUserResponse], error)
+	GetUser(context.Context, *connect_go.Request[v1.GetUserRequest]) (*connect_go.Response[v1.GetUserResponse], error)
 	// CreateUser creates a new user
-	CreateUser(context.Context, *connect_go.Request[api.CreateUserRequest]) (*connect_go.Response[api.CreateUserResponse], error)
+	CreateUser(context.Context, *connect_go.Request[v1.CreateUserRequest]) (*connect_go.Response[v1.CreateUserResponse], error)
 }
 
 // NewUserServiceClient constructs a client for the api.UserService service. By default, it uses the
@@ -57,12 +57,12 @@ type UserServiceClient interface {
 func NewUserServiceClient(httpClient connect_go.HTTPClient, baseURL string, opts ...connect_go.ClientOption) UserServiceClient {
 	baseURL = strings.TrimRight(baseURL, "/")
 	return &userServiceClient{
-		getUser: connect_go.NewClient[api.GetUserRequest, api.GetUserResponse](
+		getUser: connect_go.NewClient[v1.GetUserRequest, v1.GetUserResponse](
 			httpClient,
 			baseURL+UserServiceGetUserProcedure,
 			opts...,
 		),
-		createUser: connect_go.NewClient[api.CreateUserRequest, api.CreateUserResponse](
+		createUser: connect_go.NewClient[v1.CreateUserRequest, v1.CreateUserResponse](
 			httpClient,
 			baseURL+UserServiceCreateUserProcedure,
 			opts...,
@@ -72,26 +72,26 @@ func NewUserServiceClient(httpClient connect_go.HTTPClient, baseURL string, opts
 
 // userServiceClient implements UserServiceClient.
 type userServiceClient struct {
-	getUser    *connect_go.Client[api.GetUserRequest, api.GetUserResponse]
-	createUser *connect_go.Client[api.CreateUserRequest, api.CreateUserResponse]
+	getUser    *connect_go.Client[v1.GetUserRequest, v1.GetUserResponse]
+	createUser *connect_go.Client[v1.CreateUserRequest, v1.CreateUserResponse]
 }
 
 // GetUser calls api.UserService.GetUser.
-func (c *userServiceClient) GetUser(ctx context.Context, req *connect_go.Request[api.GetUserRequest]) (*connect_go.Response[api.GetUserResponse], error) {
+func (c *userServiceClient) GetUser(ctx context.Context, req *connect_go.Request[v1.GetUserRequest]) (*connect_go.Response[v1.GetUserResponse], error) {
 	return c.getUser.CallUnary(ctx, req)
 }
 
 // CreateUser calls api.UserService.CreateUser.
-func (c *userServiceClient) CreateUser(ctx context.Context, req *connect_go.Request[api.CreateUserRequest]) (*connect_go.Response[api.CreateUserResponse], error) {
+func (c *userServiceClient) CreateUser(ctx context.Context, req *connect_go.Request[v1.CreateUserRequest]) (*connect_go.Response[v1.CreateUserResponse], error) {
 	return c.createUser.CallUnary(ctx, req)
 }
 
 // UserServiceHandler is an implementation of the api.UserService service.
 type UserServiceHandler interface {
 	// GetUser retrieves a user by ID
-	GetUser(context.Context, *connect_go.Request[api.GetUserRequest]) (*connect_go.Response[api.GetUserResponse], error)
+	GetUser(context.Context, *connect_go.Request[v1.GetUserRequest]) (*connect_go.Response[v1.GetUserResponse], error)
 	// CreateUser creates a new user
-	CreateUser(context.Context, *connect_go.Request[api.CreateUserRequest]) (*connect_go.Response[api.CreateUserResponse], error)
+	CreateUser(context.Context, *connect_go.Request[v1.CreateUserRequest]) (*connect_go.Response[v1.CreateUserResponse], error)
 }
 
 // NewUserServiceHandler builds an HTTP handler from the service implementation. It returns the path
@@ -125,10 +125,10 @@ func NewUserServiceHandler(svc UserServiceHandler, opts ...connect_go.HandlerOpt
 // UnimplementedUserServiceHandler returns CodeUnimplemented from all methods.
 type UnimplementedUserServiceHandler struct{}
 
-func (UnimplementedUserServiceHandler) GetUser(context.Context, *connect_go.Request[api.GetUserRequest]) (*connect_go.Response[api.GetUserResponse], error) {
+func (UnimplementedUserServiceHandler) GetUser(context.Context, *connect_go.Request[v1.GetUserRequest]) (*connect_go.Response[v1.GetUserResponse], error) {
 	return nil, connect_go.NewError(connect_go.CodeUnimplemented, errors.New("api.UserService.GetUser is not implemented"))
 }
 
-func (UnimplementedUserServiceHandler) CreateUser(context.Context, *connect_go.Request[api.CreateUserRequest]) (*connect_go.Response[api.CreateUserResponse], error) {
+func (UnimplementedUserServiceHandler) CreateUser(context.Context, *connect_go.Request[v1.CreateUserRequest]) (*connect_go.Response[v1.CreateUserResponse], error) {
 	return nil, connect_go.NewError(connect_go.CodeUnimplemented, errors.New("api.UserService.CreateUser is not implemented"))
 }

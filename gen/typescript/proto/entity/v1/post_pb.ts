@@ -10,7 +10,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file proto/entity/v1/post.proto.
  */
 export const file_proto_entity_v1_post: GenFile = /*@__PURE__*/
-  fileDesc("Chpwcm90by9lbnRpdHkvdjEvcG9zdC5wcm90bxIJZW50aXR5LnYxIkoKBFBvc3QSHQoCaWQYASABKAsyES5lbnRpdHkudjEuUG9zdElkEiMKBXRpdGxlGAIgASgLMhQuZW50aXR5LnYxLlBvc3RUaXRsZSIXCgZQb3N0SWQSDQoFdmFsdWUYASABKAkiGgoJUG9zdFRpdGxlEg0KBXZhbHVlGAEgASgJQjVaM2dpdGh1Yi5jb20vcGFubnBlcnMvcHJvdG9idWYtc2NhZmZvbGQvZ2VuL2dvL2VudGl0eWIGcHJvdG8z");
+  fileDesc("Chpwcm90by9lbnRpdHkvdjEvcG9zdC5wcm90bxIJZW50aXR5LnYxIkoKBFBvc3QSHQoCaWQYASABKAsyES5lbnRpdHkudjEuUG9zdElkEiMKBXRpdGxlGAIgASgLMhQuZW50aXR5LnYxLlBvc3RUaXRsZSIXCgZQb3N0SWQSDQoFdmFsdWUYASABKAkiGgoJUG9zdFRpdGxlEg0KBXZhbHVlGAEgASgJQj5aPGdpdGh1Yi5jb20vcGFubnBlcnMvcHJvdG9idWYtc2NhZmZvbGQvZ2VuL2dvL3Byb3RvL2VudGl0eS92MWIGcHJvdG8z");
 
 /**
  * Post entity
