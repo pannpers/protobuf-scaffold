@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.36.6
 // 	protoc        (unknown)
-// source: proto/entity/post.proto
+// source: proto/entity/v1/post.proto
 
 package entity
 
@@ -32,7 +32,7 @@ type Post struct {
 
 func (x *Post) Reset() {
 	*x = Post{}
-	mi := &file_proto_entity_post_proto_msgTypes[0]
+	mi := &file_proto_entity_v1_post_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -44,7 +44,7 @@ func (x *Post) String() string {
 func (*Post) ProtoMessage() {}
 
 func (x *Post) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_entity_post_proto_msgTypes[0]
+	mi := &file_proto_entity_v1_post_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -57,7 +57,7 @@ func (x *Post) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Post.ProtoReflect.Descriptor instead.
 func (*Post) Descriptor() ([]byte, []int) {
-	return file_proto_entity_post_proto_rawDescGZIP(), []int{0}
+	return file_proto_entity_v1_post_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *Post) GetId() *PostId {
@@ -84,7 +84,7 @@ type PostId struct {
 
 func (x *PostId) Reset() {
 	*x = PostId{}
-	mi := &file_proto_entity_post_proto_msgTypes[1]
+	mi := &file_proto_entity_v1_post_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -96,7 +96,7 @@ func (x *PostId) String() string {
 func (*PostId) ProtoMessage() {}
 
 func (x *PostId) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_entity_post_proto_msgTypes[1]
+	mi := &file_proto_entity_v1_post_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -109,7 +109,7 @@ func (x *PostId) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PostId.ProtoReflect.Descriptor instead.
 func (*PostId) Descriptor() ([]byte, []int) {
-	return file_proto_entity_post_proto_rawDescGZIP(), []int{1}
+	return file_proto_entity_v1_post_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *PostId) GetValue() string {
@@ -129,7 +129,7 @@ type PostTitle struct {
 
 func (x *PostTitle) Reset() {
 	*x = PostTitle{}
-	mi := &file_proto_entity_post_proto_msgTypes[2]
+	mi := &file_proto_entity_v1_post_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -141,7 +141,7 @@ func (x *PostTitle) String() string {
 func (*PostTitle) ProtoMessage() {}
 
 func (x *PostTitle) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_entity_post_proto_msgTypes[2]
+	mi := &file_proto_entity_v1_post_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -154,7 +154,7 @@ func (x *PostTitle) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PostTitle.ProtoReflect.Descriptor instead.
 func (*PostTitle) Descriptor() ([]byte, []int) {
-	return file_proto_entity_post_proto_rawDescGZIP(), []int{2}
+	return file_proto_entity_v1_post_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *PostTitle) GetValue() string {
@@ -164,42 +164,40 @@ func (x *PostTitle) GetValue() string {
 	return ""
 }
 
-var File_proto_entity_post_proto protoreflect.FileDescriptor
+var File_proto_entity_v1_post_proto protoreflect.FileDescriptor
 
-const file_proto_entity_post_proto_rawDesc = "" +
+const file_proto_entity_v1_post_proto_rawDesc = "" +
 	"\n" +
-	"\x17proto/entity/post.proto\x12\x06entity\"O\n" +
-	"\x04Post\x12\x1e\n" +
-	"\x02id\x18\x01 \x01(\v2\x0e.entity.PostIdR\x02id\x12'\n" +
-	"\x05title\x18\x02 \x01(\v2\x11.entity.PostTitleR\x05title\"\x1e\n" +
+	"\x1aproto/entity/v1/post.proto\x12\tentity.v1\"U\n" +
+	"\x04Post\x12!\n" +
+	"\x02id\x18\x01 \x01(\v2\x11.entity.v1.PostIdR\x02id\x12*\n" +
+	"\x05title\x18\x02 \x01(\v2\x14.entity.v1.PostTitleR\x05title\"\x1e\n" +
 	"\x06PostId\x12\x14\n" +
 	"\x05value\x18\x01 \x01(\tR\x05value\"!\n" +
 	"\tPostTitle\x12\x14\n" +
-	"\x05value\x18\x01 \x01(\tR\x05valueB\x8a\x01\n" +
-	"\n" +
-	"com.entityB\tPostProtoP\x01Z9github.com/pannpers/protobuf-scaffold/gen/go/proto/entity\xa2\x02\x03EXX\xaa\x02\x06Entity\xca\x02\x06Entity\xe2\x02\x12Entity\\GPBMetadata\xea\x02\x06Entityb\x06proto3"
+	"\x05value\x18\x01 \x01(\tR\x05valueB5Z3github.com/pannpers/protobuf-scaffold/gen/go/entityb\x06proto3"
 
 var (
-	file_proto_entity_post_proto_rawDescOnce sync.Once
-	file_proto_entity_post_proto_rawDescData []byte
+	file_proto_entity_v1_post_proto_rawDescOnce sync.Once
+	file_proto_entity_v1_post_proto_rawDescData []byte
 )
 
-func file_proto_entity_post_proto_rawDescGZIP() []byte {
-	file_proto_entity_post_proto_rawDescOnce.Do(func() {
-		file_proto_entity_post_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_proto_entity_post_proto_rawDesc), len(file_proto_entity_post_proto_rawDesc)))
+func file_proto_entity_v1_post_proto_rawDescGZIP() []byte {
+	file_proto_entity_v1_post_proto_rawDescOnce.Do(func() {
+		file_proto_entity_v1_post_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_proto_entity_v1_post_proto_rawDesc), len(file_proto_entity_v1_post_proto_rawDesc)))
 	})
-	return file_proto_entity_post_proto_rawDescData
+	return file_proto_entity_v1_post_proto_rawDescData
 }
 
-var file_proto_entity_post_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
-var file_proto_entity_post_proto_goTypes = []any{
-	(*Post)(nil),      // 0: entity.Post
-	(*PostId)(nil),    // 1: entity.PostId
-	(*PostTitle)(nil), // 2: entity.PostTitle
+var file_proto_entity_v1_post_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
+var file_proto_entity_v1_post_proto_goTypes = []any{
+	(*Post)(nil),      // 0: entity.v1.Post
+	(*PostId)(nil),    // 1: entity.v1.PostId
+	(*PostTitle)(nil), // 2: entity.v1.PostTitle
 }
-var file_proto_entity_post_proto_depIdxs = []int32{
-	1, // 0: entity.Post.id:type_name -> entity.PostId
-	2, // 1: entity.Post.title:type_name -> entity.PostTitle
+var file_proto_entity_v1_post_proto_depIdxs = []int32{
+	1, // 0: entity.v1.Post.id:type_name -> entity.v1.PostId
+	2, // 1: entity.v1.Post.title:type_name -> entity.v1.PostTitle
 	2, // [2:2] is the sub-list for method output_type
 	2, // [2:2] is the sub-list for method input_type
 	2, // [2:2] is the sub-list for extension type_name
@@ -207,26 +205,26 @@ var file_proto_entity_post_proto_depIdxs = []int32{
 	0, // [0:2] is the sub-list for field type_name
 }
 
-func init() { file_proto_entity_post_proto_init() }
-func file_proto_entity_post_proto_init() {
-	if File_proto_entity_post_proto != nil {
+func init() { file_proto_entity_v1_post_proto_init() }
+func file_proto_entity_v1_post_proto_init() {
+	if File_proto_entity_v1_post_proto != nil {
 		return
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_entity_post_proto_rawDesc), len(file_proto_entity_post_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_entity_v1_post_proto_rawDesc), len(file_proto_entity_v1_post_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
-		GoTypes:           file_proto_entity_post_proto_goTypes,
-		DependencyIndexes: file_proto_entity_post_proto_depIdxs,
-		MessageInfos:      file_proto_entity_post_proto_msgTypes,
+		GoTypes:           file_proto_entity_v1_post_proto_goTypes,
+		DependencyIndexes: file_proto_entity_v1_post_proto_depIdxs,
+		MessageInfos:      file_proto_entity_v1_post_proto_msgTypes,
 	}.Build()
-	File_proto_entity_post_proto = out.File
-	file_proto_entity_post_proto_goTypes = nil
-	file_proto_entity_post_proto_depIdxs = nil
+	File_proto_entity_v1_post_proto = out.File
+	file_proto_entity_v1_post_proto_goTypes = nil
+	file_proto_entity_v1_post_proto_depIdxs = nil
 }

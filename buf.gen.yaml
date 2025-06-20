@@ -1,18 +1,21 @@
-version: v1
-managed:
-  enabled: true
-  go_package_prefix:
-    default: github.com/pannpers/protobuf-scaffold/gen/go
+# https://buf.build/docs/configuration/v2/buf-gen-yaml/
+version: v2
+# 'clean', when set to true, deletes the directories, zip files, and/or jar files specified in the
+# `out` field for all plugins before running code generation.
+clean: true
+# managed:
+#   enabled: true
+# 'plugins' is a list of plugin configurations used for buf generate.
 plugins:
-  - plugin: buf.build/protocolbuffers/go
+  - remote: buf.build/protocolbuffers/go
     out: gen/go
     opt: paths=source_relative
-  - plugin: buf.build/grpc/go
+  - remote: buf.build/bufbuild/connect-go
     out: gen/go
     opt: paths=source_relative
-  - plugin: buf.build/bufbuild/es
+  - remote: buf.build/bufbuild/es
     out: gen/typescript
     opt: target=ts
-  - plugin: buf.build/bufbuild/connect-es
+  - remote: buf.build/bufbuild/connect-es
     out: gen/typescript
     opt: target=ts

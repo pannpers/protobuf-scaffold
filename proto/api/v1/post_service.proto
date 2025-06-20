@@ -2,7 +2,8 @@ syntax = "proto3";
 
 package api;
 
-import "proto/entity/post.proto";
+import "proto/entity/v1/post.proto";
+import "proto/entity/v1/user.proto";
 
 option go_package = "github.com/pannpers/protobuf-scaffold/gen/go/api";
 
@@ -24,17 +25,17 @@ message GetPostRequest {
 // GetPostResponse is the response message for GetPost
 message GetPostResponse {
   // The post resource
-  entity.Post post = 1;
+  entity.v1.Post post = 1;
 }
 
 // CreatePostRequest is the request message for CreatePost
 message CreatePostRequest {
   // The post resource to create
-  entity.Post post = 1;
+  entity.v1.Post post = 1;
 }
 
 // CreatePostResponse is the response message for CreatePost
 message CreatePostResponse {
   // The created post resource
-  entity.Post post = 1;
+  entity.v1.Post post = 1;
 }

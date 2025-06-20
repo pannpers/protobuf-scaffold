@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package entity;
+package entity.v1;
 
 option go_package = "github.com/pannpers/protobuf-scaffold/gen/go/entity";
 
