@@ -5,9 +5,9 @@
 package v1connect
 
 import (
+	connect "connectrpc.com/connect"
 	context "context"
 	errors "errors"
-	connect_go "github.com/bufbuild/connect-go"
 	v1 "github.com/pannpers/protobuf-scaffold/gen/go/proto/api/v1"
 	http "net/http"
 	strings "strings"
@@ -18,7 +18,7 @@ import (
 // generated with a version of connect newer than the one compiled into your binary. You can fix the
 // problem by either regenerating this code with an older version of connect or updating the connect
 // version compiled into your binary.
-const _ = connect_go.IsAtLeastVersion0_1_0
+const _ = connect.IsAtLeastVersion1_13_0
 
 const (
 	// PostServiceName is the fully-qualified name of the PostService service.
@@ -42,9 +42,9 @@ const (
 // PostServiceClient is a client for the api.PostService service.
 type PostServiceClient interface {
 	// GetPost retrieves a post by ID
-	GetPost(context.Context, *connect_go.Request[v1.GetPostRequest]) (*connect_go.Response[v1.GetPostResponse], error)
+	GetPost(context.Context, *connect.Request[v1.GetPostRequest]) (*connect.Response[v1.GetPostResponse], error)
 	// CreatePost creates a new post
-	CreatePost(context.Context, *connect_go.Request[v1.CreatePostRequest]) (*connect_go.Response[v1.CreatePostResponse], error)
+	CreatePost(context.Context, *connect.Request[v1.CreatePostRequest]) (*connect.Response[v1.CreatePostResponse], error)
 }
 
 // NewPostServiceClient constructs a client for the api.PostService service. By default, it uses the
@@ -54,44 +54,47 @@ type PostServiceClient interface {
 //
 // The URL supplied here should be the base URL for the Connect or gRPC server (for example,
 // http://api.acme.com or https://acme.com/grpc).
-func NewPostServiceClient(httpClient connect_go.HTTPClient, baseURL string, opts ...connect_go.ClientOption) PostServiceClient {
+func NewPostServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...connect.ClientOption) PostServiceClient {
 	baseURL = strings.TrimRight(baseURL, "/")
+	postServiceMethods := v1.File_proto_api_v1_post_service_proto.Services().ByName("PostService").Methods()
 	return &postServiceClient{
-		getPost: connect_go.NewClient[v1.GetPostRequest, v1.GetPostResponse](
+		getPost: connect.NewClient[v1.GetPostRequest, v1.GetPostResponse](
 			httpClient,
 			baseURL+PostServiceGetPostProcedure,
-			opts...,
+			connect.WithSchema(postServiceMethods.ByName("GetPost")),
+			connect.WithClientOptions(opts...),
 		),
-		createPost: connect_go.NewClient[v1.CreatePostRequest, v1.CreatePostResponse](
+		createPost: connect.NewClient[v1.CreatePostRequest, v1.CreatePostResponse](
 			httpClient,
 			baseURL+PostServiceCreatePostProcedure,
-			opts...,
+			connect.WithSchema(postServiceMethods.ByName("CreatePost")),
+			connect.WithClientOptions(opts...),
 		),
 	}
 }
 
 // postServiceClient implements PostServiceClient.
 type postServiceClient struct {
-	getPost    *connect_go.Client[v1.GetPostRequest, v1.GetPostResponse]
-	createPost *connect_go.Client[v1.CreatePostRequest, v1.CreatePostResponse]
+	getPost    *connect.Client[v1.GetPostRequest, v1.GetPostResponse]
+	createPost *connect.Client[v1.CreatePostRequest, v1.CreatePostResponse]
 }
 
 // GetPost calls api.PostService.GetPost.
-func (c *postServiceClient) GetPost(ctx context.Context, req *connect_go.Request[v1.GetPostRequest]) (*connect_go.Response[v1.GetPostResponse], error) {
+func (c *postServiceClient) GetPost(ctx context.Context, req *connect.Request[v1.GetPostRequest]) (*connect.Response[v1.GetPostResponse], error) {
 	return c.getPost.CallUnary(ctx, req)
 }
 
 // CreatePost calls api.PostService.CreatePost.
-func (c *postServiceClient) CreatePost(ctx context.Context, req *connect_go.Request[v1.CreatePostRequest]) (*connect_go.Response[v1.CreatePostResponse], error) {
+func (c *postServiceClient) CreatePost(ctx context.Context, req *connect.Request[v1.CreatePostRequest]) (*connect.Response[v1.CreatePostResponse], error) {
 	return c.createPost.CallUnary(ctx, req)
 }
 
 // PostServiceHandler is an implementation of the api.PostService service.
 type PostServiceHandler interface {
 	// GetPost retrieves a post by ID
-	GetPost(context.Context, *connect_go.Request[v1.GetPostRequest]) (*connect_go.Response[v1.GetPostResponse], error)
+	GetPost(context.Context, *connect.Request[v1.GetPostRequest]) (*connect.Response[v1.GetPostResponse], error)
 	// CreatePost creates a new post
-	CreatePost(context.Context, *connect_go.Request[v1.CreatePostRequest]) (*connect_go.Response[v1.CreatePostResponse], error)
+	CreatePost(context.Context, *connect.Request[v1.CreatePostRequest]) (*connect.Response[v1.CreatePostResponse], error)
 }
 
 // NewPostServiceHandler builds an HTTP handler from the service implementation. It returns the path
@@ -99,16 +102,19 @@ type PostServiceHandler interface {
 //
 // By default, handlers support the Connect, gRPC, and gRPC-Web protocols with the binary Protobuf
 // and JSON codecs. They also support gzip compression.
-func NewPostServiceHandler(svc PostServiceHandler, opts ...connect_go.HandlerOption) (string, http.Handler) {
-	postServiceGetPostHandler := connect_go.NewUnaryHandler(
+func NewPostServiceHandler(svc PostServiceHandler, opts ...connect.HandlerOption) (string, http.Handler) {
+	postServiceMethods := v1.File_proto_api_v1_post_service_proto.Services().ByName("PostService").Methods()
+	postServiceGetPostHandler := connect.NewUnaryHandler(
 		PostServiceGetPostProcedure,
 		svc.GetPost,
-		opts...,
+		connect.WithSchema(postServiceMethods.ByName("GetPost")),
+		connect.WithHandlerOptions(opts...),
 	)
-	postServiceCreatePostHandler := connect_go.NewUnaryHandler(
+	postServiceCreatePostHandler := connect.NewUnaryHandler(
 		PostServiceCreatePostProcedure,
 		svc.CreatePost,
-		opts...,
+		connect.WithSchema(postServiceMethods.ByName("CreatePost")),
+		connect.WithHandlerOptions(opts...),
 	)
 	return "/api.PostService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
@@ -125,10 +131,10 @@ func NewPostServiceHandler(svc PostServiceHandler, opts ...connect_go.HandlerOpt
 // UnimplementedPostServiceHandler returns CodeUnimplemented from all methods.
 type UnimplementedPostServiceHandler struct{}
 
-func (UnimplementedPostServiceHandler) GetPost(context.Context, *connect_go.Request[v1.GetPostRequest]) (*connect_go.Response[v1.GetPostResponse], error) {
-	return nil, connect_go.NewError(connect_go.CodeUnimplemented, errors.New("api.PostService.GetPost is not implemented"))
+func (UnimplementedPostServiceHandler) GetPost(context.Context, *connect.Request[v1.GetPostRequest]) (*connect.Response[v1.GetPostResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("api.PostService.GetPost is not implemented"))
 }
 
-func (UnimplementedPostServiceHandler) CreatePost(context.Context, *connect_go.Request[v1.CreatePostRequest]) (*connect_go.Response[v1.CreatePostResponse], error) {
-	return nil, connect_go.NewError(connect_go.CodeUnimplemented, errors.New("api.PostService.CreatePost is not implemented"))
+func (UnimplementedPostServiceHandler) CreatePost(context.Context, *connect.Request[v1.CreatePostRequest]) (*connect.Response[v1.CreatePostResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("api.PostService.CreatePost is not implemented"))
 }
