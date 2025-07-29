@@ -1,0 +1,58 @@
+name: '🐛 Bug Report'
+description: 'Create a report to help us improve the project'
+title: 'Bug: [Short description of the bug]'
+labels: ['bug']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report! Please provide as much detail as possible.
+  - type: textarea
+    id: description
+    attributes:
+      label: 'Bug Description'
+      description: 'A clear and concise description of what the bug is.'
+      placeholder: 'e.g., buf generate fails with import errors or generated code has compilation issues.'
+    validations:
+      required: true
+  - type: textarea
+    id: steps-to-reproduce
+    attributes:
+      label: 'Steps to Reproduce'
+      description: 'Steps to reproduce the behavior. Be as specific as possible.'
+      placeholder: |
+        1. Run `buf generate` in the project root
+        2. Check the generated files in gen/ directory
+        3. Observe the compilation error in TypeScript/Go code
+    validations:
+      required: true
+  - type: textarea
+    id: expected-vs-actual
+    attributes:
+      label: 'Expected vs Actual Behavior'
+      description: 'What did you expect to happen vs what actually happened?'
+      placeholder: |
+        **Expected:** buf generate should create Go and TypeScript files without errors
+        **Actual:** buf generate fails with "import not found" error
+    validations:
+      required: true
+  - type: dropdown
+    id: environment
+    attributes:
+      label: 'Environment'
+      description: 'In which environment did you encounter the bug?'
+      options:
+        - Local (macOS)
+        - Local (Windows)
+        - Local (Linux/WSL)
+        - GitHub Actions (CI)
+        - mise environment
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: 'Logs / Screenshots'
+      description: 'If applicable, add logs, stack traces, or screenshots to help explain your problem.'
+      render: shell

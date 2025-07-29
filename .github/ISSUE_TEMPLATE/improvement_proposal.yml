@@ -1,0 +1,38 @@
+name: '🔧 Enhancement'
+description: 'Propose improvements for tooling, documentation, CI/CD, or workflow'
+title: 'Improve: [Short description of the enhancement]'
+labels: ['enhancement']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Suggest improvements to make the protobuf workflow better!
+  - type: textarea
+    id: improvement-and-motivation
+    attributes:
+      label: 'Improvement and Motivation'
+      description: 'Describe the area you want to improve and explain why this change is valuable.'
+      placeholder: |
+        **Area of Improvement:**
+        The pre-commit hooks currently run `buf generate` on every push, which creates large diffs and unnecessary commits.
+
+        **Motivation / Benefit:**
+        Optimizing the code generation workflow will reduce repository noise, improve git history clarity, and speed up the development cycle.
+    validations:
+      required: true
+  - type: textarea
+    id: proposed-solution
+    attributes:
+      label: 'Proposed Solution / Implementation Ideas'
+      description: 'Outline your proposed solution or ideas on how to implement the improvement.'
+      placeholder: |
+        - **For Pre-commit:** Only run buf generate when .proto files have changed
+        - **For Documentation:** Add examples of common proto patterns in a docs/ directory
+        - **For CI:** Cache buf tools and dependencies to speed up GitHub Actions
+    validations:
+      required: true
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: 'Additional Context'
+      description: 'Add any other context, such as links to relevant documentation or screenshots.'
