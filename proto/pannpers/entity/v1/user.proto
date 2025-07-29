@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package entity;
+package pannpers.entity.v1;
 
-option go_package = "github.com/pannpers/protobuf-scaffold/gen/go/proto/entity/v1";
+option go_package = "gen/go/pannpers/entity/v1";
 
 // User entity
 message User {

@@ -2,12 +2,12 @@
 // versions:
 // 	protoc-gen-go v1.36.6
 // 	protoc        (unknown)
-// source: proto/api/v1/user_service.proto
+// source: pannpers/api/v1/user_service.proto
 
-package v1
+package apiv1
 
 import (
-	v1 "github.com/pannpers/protobuf-scaffold/gen/go/proto/entity/v1"
+	v1 "github.com/pannpers/protobuf-scaffold/gen/go/pannpers/entity/v1"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -33,7 +33,7 @@ type GetUserRequest struct {
 
 func (x *GetUserRequest) Reset() {
 	*x = GetUserRequest{}
-	mi := &file_proto_api_v1_user_service_proto_msgTypes[0]
+	mi := &file_pannpers_api_v1_user_service_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -45,7 +45,7 @@ func (x *GetUserRequest) String() string {
 func (*GetUserRequest) ProtoMessage() {}
 
 func (x *GetUserRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_api_v1_user_service_proto_msgTypes[0]
+	mi := &file_pannpers_api_v1_user_service_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -58,7 +58,7 @@ func (x *GetUserRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetUserRequest.ProtoReflect.Descriptor instead.
 func (*GetUserRequest) Descriptor() ([]byte, []int) {
-	return file_proto_api_v1_user_service_proto_rawDescGZIP(), []int{0}
+	return file_pannpers_api_v1_user_service_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *GetUserRequest) GetUserId() string {
@@ -79,7 +79,7 @@ type GetUserResponse struct {
 
 func (x *GetUserResponse) Reset() {
 	*x = GetUserResponse{}
-	mi := &file_proto_api_v1_user_service_proto_msgTypes[1]
+	mi := &file_pannpers_api_v1_user_service_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -91,7 +91,7 @@ func (x *GetUserResponse) String() string {
 func (*GetUserResponse) ProtoMessage() {}
 
 func (x *GetUserResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_api_v1_user_service_proto_msgTypes[1]
+	mi := &file_pannpers_api_v1_user_service_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -104,7 +104,7 @@ func (x *GetUserResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetUserResponse.ProtoReflect.Descriptor instead.
 func (*GetUserResponse) Descriptor() ([]byte, []int) {
-	return file_proto_api_v1_user_service_proto_rawDescGZIP(), []int{1}
+	return file_pannpers_api_v1_user_service_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *GetUserResponse) GetUser() *v1.User {
@@ -125,7 +125,7 @@ type CreateUserRequest struct {
 
 func (x *CreateUserRequest) Reset() {
 	*x = CreateUserRequest{}
-	mi := &file_proto_api_v1_user_service_proto_msgTypes[2]
+	mi := &file_pannpers_api_v1_user_service_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -137,7 +137,7 @@ func (x *CreateUserRequest) String() string {
 func (*CreateUserRequest) ProtoMessage() {}
 
 func (x *CreateUserRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_api_v1_user_service_proto_msgTypes[2]
+	mi := &file_pannpers_api_v1_user_service_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -150,7 +150,7 @@ func (x *CreateUserRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateUserRequest.ProtoReflect.Descriptor instead.
 func (*CreateUserRequest) Descriptor() ([]byte, []int) {
-	return file_proto_api_v1_user_service_proto_rawDescGZIP(), []int{2}
+	return file_pannpers_api_v1_user_service_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *CreateUserRequest) GetUser() *v1.User {
@@ -171,7 +171,7 @@ type CreateUserResponse struct {
 
 func (x *CreateUserResponse) Reset() {
 	*x = CreateUserResponse{}
-	mi := &file_proto_api_v1_user_service_proto_msgTypes[3]
+	mi := &file_pannpers_api_v1_user_service_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -183,7 +183,7 @@ func (x *CreateUserResponse) String() string {
 func (*CreateUserResponse) ProtoMessage() {}
 
 func (x *CreateUserResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_api_v1_user_service_proto_msgTypes[3]
+	mi := &file_pannpers_api_v1_user_service_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -196,7 +196,7 @@ func (x *CreateUserResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateUserResponse.ProtoReflect.Descriptor instead.
 func (*CreateUserResponse) Descriptor() ([]byte, []int) {
-	return file_proto_api_v1_user_service_proto_rawDescGZIP(), []int{3}
+	return file_pannpers_api_v1_user_service_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *CreateUserResponse) GetUser() *v1.User {
@@ -206,52 +206,53 @@ func (x *CreateUserResponse) GetUser() *v1.User {
 	return nil
 }
 
-var File_proto_api_v1_user_service_proto protoreflect.FileDescriptor
+var File_pannpers_api_v1_user_service_proto protoreflect.FileDescriptor
 
-const file_proto_api_v1_user_service_proto_rawDesc = "" +
+const file_pannpers_api_v1_user_service_proto_rawDesc = "" +
 	"\n" +
-	"\x1fproto/api/v1/user_service.proto\x12\x03api\x1a\x1aproto/entity/v1/user.proto\")\n" +
+	"\"pannpers/api/v1/user_service.proto\x12\x0fpannpers.api.v1\x1a\x1dpannpers/entity/v1/user.proto\")\n" +
 	"\x0eGetUserRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\"3\n" +
-	"\x0fGetUserResponse\x12 \n" +
-	"\x04user\x18\x01 \x01(\v2\f.entity.UserR\x04user\"5\n" +
-	"\x11CreateUserRequest\x12 \n" +
-	"\x04user\x18\x01 \x01(\v2\f.entity.UserR\x04user\"6\n" +
-	"\x12CreateUserResponse\x12 \n" +
-	"\x04user\x18\x01 \x01(\v2\f.entity.UserR\x04user2\x82\x01\n" +
-	"\vUserService\x124\n" +
-	"\aGetUser\x12\x13.api.GetUserRequest\x1a\x14.api.GetUserResponse\x12=\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\"?\n" +
+	"\x0fGetUserResponse\x12,\n" +
+	"\x04user\x18\x01 \x01(\v2\x18.pannpers.entity.v1.UserR\x04user\"A\n" +
+	"\x11CreateUserRequest\x12,\n" +
+	"\x04user\x18\x01 \x01(\v2\x18.pannpers.entity.v1.UserR\x04user\"B\n" +
+	"\x12CreateUserResponse\x12,\n" +
+	"\x04user\x18\x01 \x01(\v2\x18.pannpers.entity.v1.UserR\x04user2\xb2\x01\n" +
+	"\vUserService\x12L\n" +
+	"\aGetUser\x12\x1f.pannpers.api.v1.GetUserRequest\x1a .pannpers.api.v1.GetUserResponse\x12U\n" +
 	"\n" +
-	"CreateUser\x12\x16.api.CreateUserRequest\x1a\x17.api.CreateUserResponseB;Z9github.com/pannpers/protobuf-scaffold/gen/go/proto/api/v1b\x06proto3"
+	"CreateUser\x12\".pannpers.api.v1.CreateUserRequest\x1a#.pannpers.api.v1.CreateUserResponseB\xc9\x01\n" +
+	"\x13com.pannpers.api.v1B\x10UserServiceProtoP\x01ZBgithub.com/pannpers/protobuf-scaffold/gen/go/pannpers/api/v1;apiv1\xa2\x02\x03PAX\xaa\x02\x0fPannpers.Api.V1\xca\x02\x0fPannpers\\Api\\V1\xe2\x02\x1bPannpers\\Api\\V1\\GPBMetadata\xea\x02\x11Pannpers::Api::V1b\x06proto3"
 
 var (
-	file_proto_api_v1_user_service_proto_rawDescOnce sync.Once
-	file_proto_api_v1_user_service_proto_rawDescData []byte
+	file_pannpers_api_v1_user_service_proto_rawDescOnce sync.Once
+	file_pannpers_api_v1_user_service_proto_rawDescData []byte
 )
 
-func file_proto_api_v1_user_service_proto_rawDescGZIP() []byte {
-	file_proto_api_v1_user_service_proto_rawDescOnce.Do(func() {
-		file_proto_api_v1_user_service_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_proto_api_v1_user_service_proto_rawDesc), len(file_proto_api_v1_user_service_proto_rawDesc)))
+func file_pannpers_api_v1_user_service_proto_rawDescGZIP() []byte {
+	file_pannpers_api_v1_user_service_proto_rawDescOnce.Do(func() {
+		file_pannpers_api_v1_user_service_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_pannpers_api_v1_user_service_proto_rawDesc), len(file_pannpers_api_v1_user_service_proto_rawDesc)))
 	})
-	return file_proto_api_v1_user_service_proto_rawDescData
+	return file_pannpers_api_v1_user_service_proto_rawDescData
 }
 
-var file_proto_api_v1_user_service_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
-var file_proto_api_v1_user_service_proto_goTypes = []any{
-	(*GetUserRequest)(nil),     // 0: api.GetUserRequest
-	(*GetUserResponse)(nil),    // 1: api.GetUserResponse
-	(*CreateUserRequest)(nil),  // 2: api.CreateUserRequest
-	(*CreateUserResponse)(nil), // 3: api.CreateUserResponse
-	(*v1.User)(nil),            // 4: entity.User
+var file_pannpers_api_v1_user_service_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_pannpers_api_v1_user_service_proto_goTypes = []any{
+	(*GetUserRequest)(nil),     // 0: pannpers.api.v1.GetUserRequest
+	(*GetUserResponse)(nil),    // 1: pannpers.api.v1.GetUserResponse
+	(*CreateUserRequest)(nil),  // 2: pannpers.api.v1.CreateUserRequest
+	(*CreateUserResponse)(nil), // 3: pannpers.api.v1.CreateUserResponse
+	(*v1.User)(nil),            // 4: pannpers.entity.v1.User
 }
-var file_proto_api_v1_user_service_proto_depIdxs = []int32{
-	4, // 0: api.GetUserResponse.user:type_name -> entity.User
-	4, // 1: api.CreateUserRequest.user:type_name -> entity.User
-	4, // 2: api.CreateUserResponse.user:type_name -> entity.User
-	0, // 3: api.UserService.GetUser:input_type -> api.GetUserRequest
-	2, // 4: api.UserService.CreateUser:input_type -> api.CreateUserRequest
-	1, // 5: api.UserService.GetUser:output_type -> api.GetUserResponse
-	3, // 6: api.UserService.CreateUser:output_type -> api.CreateUserResponse
+var file_pannpers_api_v1_user_service_proto_depIdxs = []int32{
+	4, // 0: pannpers.api.v1.GetUserResponse.user:type_name -> pannpers.entity.v1.User
+	4, // 1: pannpers.api.v1.CreateUserRequest.user:type_name -> pannpers.entity.v1.User
+	4, // 2: pannpers.api.v1.CreateUserResponse.user:type_name -> pannpers.entity.v1.User
+	0, // 3: pannpers.api.v1.UserService.GetUser:input_type -> pannpers.api.v1.GetUserRequest
+	2, // 4: pannpers.api.v1.UserService.CreateUser:input_type -> pannpers.api.v1.CreateUserRequest
+	1, // 5: pannpers.api.v1.UserService.GetUser:output_type -> pannpers.api.v1.GetUserResponse
+	3, // 6: pannpers.api.v1.UserService.CreateUser:output_type -> pannpers.api.v1.CreateUserResponse
 	5, // [5:7] is the sub-list for method output_type
 	3, // [3:5] is the sub-list for method input_type
 	3, // [3:3] is the sub-list for extension type_name
@@ -259,26 +260,26 @@ var file_proto_api_v1_user_service_proto_depIdxs = []int32{
 	0, // [0:3] is the sub-list for field type_name
 }
 
-func init() { file_proto_api_v1_user_service_proto_init() }
-func file_proto_api_v1_user_service_proto_init() {
-	if File_proto_api_v1_user_service_proto != nil {
+func init() { file_pannpers_api_v1_user_service_proto_init() }
+func file_pannpers_api_v1_user_service_proto_init() {
+	if File_pannpers_api_v1_user_service_proto != nil {
 		return
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_api_v1_user_service_proto_rawDesc), len(file_proto_api_v1_user_service_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_pannpers_api_v1_user_service_proto_rawDesc), len(file_pannpers_api_v1_user_service_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   4,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_proto_api_v1_user_service_proto_goTypes,
-		DependencyIndexes: file_proto_api_v1_user_service_proto_depIdxs,
-		MessageInfos:      file_proto_api_v1_user_service_proto_msgTypes,
+		GoTypes:           file_pannpers_api_v1_user_service_proto_goTypes,
+		DependencyIndexes: file_pannpers_api_v1_user_service_proto_depIdxs,
+		MessageInfos:      file_pannpers_api_v1_user_service_proto_msgTypes,
 	}.Build()
-	File_proto_api_v1_user_service_proto = out.File
-	file_proto_api_v1_user_service_proto_goTypes = nil
-	file_proto_api_v1_user_service_proto_depIdxs = nil
+	File_pannpers_api_v1_user_service_proto = out.File
+	file_pannpers_api_v1_user_service_proto_goTypes = nil
+	file_pannpers_api_v1_user_service_proto_depIdxs = nil
 }

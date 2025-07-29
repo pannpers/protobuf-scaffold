@@ -1,5 +1,10 @@
 # https://buf.build/docs/configuration/v2/buf-gen-yaml/
 version: v2
+managed:
+  enabled: true
+  override:
+    - file_option: go_package_prefix
+      value: github.com/pannpers/protobuf-scaffold/gen/go
 # 'clean', when set to true, deletes the directories, zip files, and/or jar files specified in the
 # `out` field for all plugins before running code generation.
 clean: true
@@ -19,3 +24,5 @@ plugins:
   - remote: buf.build/bufbuild/connect-es
     out: gen/typescript
     opt: target=ts
+inputs:
+  - directory: proto

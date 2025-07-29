@@ -1,7 +1,3 @@
 [tools]
 buf = "latest"
 pre-commit = "latest"
-
-[env]
-# Environment variables for protobuf
-PROTOBUF_VERSION = "latest"

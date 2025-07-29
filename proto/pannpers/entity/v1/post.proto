@@ -1,13 +1,17 @@
 syntax = "proto3";
 
-package entity.v1;
+package pannpers.entity.v1;
 
-option go_package = "github.com/pannpers/protobuf-scaffold/gen/go/proto/entity/v1";
+import "pannpers/entity/v1/user.proto";
+
+option go_package = "gen/go/pannpers/entity/v1";
 
 // Post entity
 message Post {
   PostId id = 1;
   PostTitle title = 2;
+  // The ID of the user who created the post.
+  UserId author_id = 3;
 }
 
 // Post ID value object

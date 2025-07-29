@@ -1,10 +1,10 @@
 syntax = "proto3";
 
-package api;
+package pannpers.api.v1;
 
-import "proto/entity/v1/user.proto";
+import "pannpers/entity/v1/user.proto";
 
-option go_package = "github.com/pannpers/protobuf-scaffold/gen/go/proto/api/v1";
+option go_package = "gen/go/pannpers/api/v1;rpc";
 
 // User service provides operations for managing users
 service UserService {
@@ -24,17 +24,17 @@ message GetUserRequest {
 // GetUserResponse is the response message for GetUser
 message GetUserResponse {
   // The user resource
-  entity.User user = 1;
+  entity.v1.User user = 1;
 }
 
 // CreateUserRequest is the request message for CreateUser
 message CreateUserRequest {
   // The user resource to create
-  entity.User user = 1;
+  entity.v1.User user = 1;
 }
 
 // CreateUserResponse is the response message for CreateUser
 message CreateUserResponse {
   // The created user resource
-  entity.User user = 1;
+  entity.v1.User user = 1;
 }

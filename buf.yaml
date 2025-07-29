@@ -1,10 +1,12 @@
 version: v2
-name: buf.build/pannpers/protobuf-scaffold
+modules:
+  - path: proto
+    name: buf.build/pannpers/protobuf-scaffold
 deps:
   - buf.build/googleapis/googleapis
 lint:
   use:
-    - DEFAULT
+    - STANDARD
 breaking:
   use:
     - FILE
