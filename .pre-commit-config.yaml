@@ -33,15 +33,10 @@ repos:
         language: system
         types: [proto]
         pass_filenames: false
-      - id: buf-generate-push
-        name: buf generate before push
-        entry: buf generate
+      - id: buf-push
+        name: buf push to BSR
+        entry: buf push
         language: system
+        types: [proto]
         pass_filenames: false
-        stages: [push]
-      - id: auto-commit-generated-push
-        name: Auto-commit generated files before push
-        entry: bash -c 'git add gen/ && git diff --cached --quiet || git commit -m "Auto-commit generated files from buf generate"'
-        language: system
-        pass_filenames: false
-        stages: [push]
+        stages: [pre-push]

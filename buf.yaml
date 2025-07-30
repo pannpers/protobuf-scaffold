@@ -1,6 +1,6 @@
 version: v2
 modules:
-  - path: proto
+  - path: proto/scaffold
     name: buf.build/pannpers/scaffold
 deps:
   - buf.build/googleapis/googleapis
@@ -9,6 +9,8 @@ lint:
   use:
     - STANDARD
     - COMMENTS
+  except:
+    - PACKAGE_SAME_GO_PACKAGE
 breaking:
   use:
     - FILE

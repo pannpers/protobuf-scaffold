@@ -11,9 +11,9 @@ pre-commit install     # Install commit hooks
 pre-commit install --hook-type pre-push  # Install push hooks
 ```
 
-### Code Generation
+### Code Generation (BSR)
 ```bash
-buf generate           # Generate Go and TypeScript code from protobuf files
+buf push               # Push schema to BSR which generates code remotely
 ```
 
 ### Validation and Formatting
@@ -30,19 +30,24 @@ buf --version          # Verify buf is available
 
 ## Architecture Overview
 
-This is a Protocol Buffers scaffold repository that generates code for both Go and TypeScript from protobuf definitions. The architecture follows a clear separation between entity definitions and API service definitions.
+This is a Protocol Buffers scaffold repository that uses Buf Schema Registry (BSR) for remote code generation from protobuf definitions. The architecture follows a clear separation between entity definitions and API service definitions.
 
 ### Key Structure
 - **Entity Layer**: Core business entities defined in `pannpers/entity/v1/` (e.g., Post, User)
 - **API Layer**: Service definitions in `pannpers/api/v1/` that use entity types
-- **Generated Code**: Go code in `gen/go/` and TypeScript in `gen/typescript/`
+- **Generated Code**: Available from BSR at `buf.build/pannpers/scaffold` (no local generation)
 
-### Code Generation Flow
-The repository uses Buf v2 with remote plugins:
-- `buf.build/protocolbuffers/go` - Standard Go protobuf generation
-- `buf.build/connectrpc/go` - Connect RPC Go bindings
-- `buf.build/bufbuild/es` - TypeScript protobuf generation
-- `buf.build/bufbuild/connect-es` - Connect RPC TypeScript bindings
+### BSR Code Generation Flow
+The repository uses Buf Schema Registry (BSR) with remote code generation:
+- **Push to BSR**: `buf push` uploads schemas to `buf.build/pannpers/scaffold`
+- **Remote Generation**: BSR generates code using plugins defined in `buf.gen.yaml`
+- **Consumer Access**: Generated code available via Go modules and npm packages
+- **Plugins Used**:
+  - `buf.build/protocolbuffers/go` - Standard Go protobuf generation
+  - `buf.build/connectrpc/go` - Connect RPC Go bindings  
+  - `buf.build/bufbuild/es` - TypeScript protobuf generation
+  - `buf.build/bufbuild/connect-es` - Connect RPC TypeScript bindings
+  - `buf.build/bufbuild/validate-go` - Go validation code generation
 
 ### Proto Package Structure
 - `pannpers.entity.v1` - Core entities (Post, User, value objects)
@@ -52,13 +57,29 @@ The repository uses Buf v2 with remote plugins:
 ### Automated Workflow
 The repository uses pre-commit hooks for quality control:
 - **Commit hooks**: buf lint, format, breaking change detection, prettier
-- **Push hooks**: Automatic code generation and commit of generated files
+- **Push hooks**: Push schemas to BSR for remote code generation
 
 ### Key Files
 - `buf.yaml` - Buf v2 configuration with googleapis dependencies
-- `buf.gen.yaml` - Code generation plugin configuration
+- `buf.gen.yaml` - Code generation plugin configuration for BSR
 - `.pre-commit-config.yaml` - Hook definitions for quality gates
 - `.mise/config.toml` - Tool version management
+
+### Using Generated Code
+Consumers can access generated code from BSR:
+
+**Go:**
+```bash
+go get buf.build/gen/go/pannpers/scaffold/protocolbuffers/go
+go get buf.build/gen/go/pannpers/scaffold/connectrpc/go
+go get buf.build/gen/go/pannpers/scaffold/bufbuild/validate-go
+```
+
+**TypeScript:**
+```bash
+npm install @buf/pannpers_scaffold.bufbuild_es
+npm install @buf/pannpers_scaffold.bufbuild_connect-es
+```
 
 ## Protobuf Design Guidelines
 
@@ -66,6 +87,8 @@ When designing entities and RPC interfaces, follow these established standards:
 
 ### Reference Documentation
 - [Buf Style Guide](https://buf.build/docs/best-practices/style-guide/)
+- [Buf Documentation Guidelines](https://buf.build/docs/bsr/documentation)
+- [Buf Schema documentation](https://buf.build/docs/bsr/documentation/)
 - [Protobuf Files and Packages](https://buf.build/docs/reference/protobuf-files-and-packages/)
 - [Google AIP-190: Protobuf Design](https://google.aip.dev/190)
 - [Google AIP General Guidelines](https://google.aip.dev/general)
@@ -107,6 +130,85 @@ When designing entities and RPC interfaces, follow these established standards:
 - **Composition**: Reference other entities by ID, not nested objects
 - **Versioning**: Plan for schema evolution with proper field numbering
 - **Documentation**: Over-document with complete sentences using `//` comments
+
+### Documentation Standards (Buf BSR Documentation)
+Follow [Buf Documentation Guidelines](https://buf.build/docs/bsr/documentation) for comprehensive protobuf documentation:
+
+#### Package Documentation
+- **Package Comments**: Add clear overview comment above `package` directive in the first file
+- **Purpose Description**: Explain what the package represents and its role in the system
+- **Example**:
+  ```protobuf
+  // Package user provides definitions for user entities and related value objects.
+  // This package contains core user data structures used across the application.
+  package pannpers.entity.v1;
+  ```
+
+#### Message and Field Documentation
+- **Message Comments**: Document each message with its purpose and usage context
+- **Field Comments**: Explain each field's meaning, constraints, and relationships
+- **Complete Sentences**: Use proper grammar and punctuation for all comments
+- **Validation Context**: Document validation rules and their business rationale
+- **Examples**:
+  ```protobuf
+  // User represents a registered user in the system.
+  // Users are identified by a unique UUID and must have valid email addresses.
+  message User {
+    // User ID is required and must be a valid UUID format
+    UserId id = 1;
+    // User name is required and must be between 1 and 100 characters
+    UserName name = 2;
+    // User email is required and must be a valid email format
+    UserEmail email = 3;
+  }
+  ```
+
+#### Service Documentation
+- **Service Overview**: Document the service's purpose and capabilities
+- **RPC Methods**: Explain each method's functionality, parameters, and return values
+- **Error Conditions**: Document expected error scenarios and status codes
+- **Examples**:
+  ```protobuf
+  // UserService provides operations for managing user accounts.
+  // This service handles user creation, retrieval, and basic profile management.
+  service UserService {
+    // GetUser retrieves a single user by their unique identifier.
+    // Returns NOT_FOUND if the user does not exist.
+    rpc GetUser(GetUserRequest) returns (GetUserResponse);
+    
+    // CreateUser creates a new user account with the provided information.
+    // Returns ALREADY_EXISTS if a user with the same email already exists.
+    rpc CreateUser(CreateUserRequest) returns (CreateUserResponse);
+  }
+  ```
+
+#### Module Documentation
+- **README Files**: Create `README.md` files at package level for comprehensive overviews
+- **Architecture Context**: Explain how the package fits into the larger system
+- **Usage Examples**: Provide practical examples of using the generated code
+- **Relationship Diagrams**: Use Mermaid diagrams for complex relationships
+
+#### Formatting Standards
+- **Markdown Support**: Use CommonMark and GitHub Flavored Markdown in comments
+- **Code Blocks**: Use backticks for code references and examples
+- **Lists**: Use bullet points for multiple related items
+- **Emphasis**: Use **bold** for important concepts and *italics* for parameters
+- **Links**: Reference related messages, services, and external documentation
+
+#### Deprecation Documentation
+- **Deprecation Notices**: Clearly mark deprecated fields and messages
+- **Migration Path**: Provide guidance for transitioning to new alternatives
+- **Timeline**: Include deprecation timeline when known
+- **Example**:
+  ```protobuf
+  message User {
+    UserId id = 1;
+    UserName name = 2;
+    // DEPRECATED: Use email field instead. This field will be removed in v2.
+    string old_email = 3 [deprecated = true];
+    UserEmail email = 4;
+  }
+  ```
 
 ### Validation Rules (Protovalidate)
 - **Always import**: Add `import "buf/validate/validate.proto"` to files using validation
@@ -166,8 +268,9 @@ When designing entities and RPC interfaces, follow these established standards:
 
 ## Development Workflow Notes
 
-1. Proto files should be modified directly in the `proto/` directory
-2. Generated code in `gen/` is automatically managed by pre-commit hooks
+1. Proto files should be modified directly in the `proto/scaffold/` directory
+2. Generated code is available from BSR, not stored locally
 3. Breaking changes are checked against the main branch
 4. All protobuf files are automatically formatted and linted on commit
-5. Code generation happens automatically on push, not on local development
+5. Schemas are pushed to BSR automatically on push for remote code generation
+6. Consumers access generated code via Go modules and npm packages from BSR

@@ -1,18 +1,8 @@
+ # Mise local configuration
+ .mise/
 
-# IDE
-.vscode/settings.json
-.idea/
+ # Generated code
+ /gen/
 
-# Claude
-.claude/settings.local.json
-
-# OS
-.DS_Store
-Thumbs.db
-
-# Logs
-*.log
-
-# Temporary files
-*.tmp
-*.temp
+ # macOS specific
+ .DS_Store

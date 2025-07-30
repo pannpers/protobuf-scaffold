@@ -32,6 +32,8 @@ pre-commit install --hook-type pre-push
 
 ### Generate Code
 
+**Note:** Code generation is primarily handled by the Buf Schema Registry (BSR). For local testing and development, you can run:
+
 ```bash
 buf generate
 ```
