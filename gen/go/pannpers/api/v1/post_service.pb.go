@@ -7,6 +7,7 @@
 package apiv1
 
 import (
+	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
 	v1 "github.com/pannpers/protobuf-scaffold/gen/go/pannpers/entity/v1"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
@@ -25,8 +26,8 @@ const (
 // GetPostRequest is the request message for GetPost
 type GetPostRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// The unique identifier of the post to retrieve
-	PostId        string `protobuf:"bytes,1,opt,name=post_id,json=postId,proto3" json:"post_id,omitempty"`
+	// The unique identifier of the post to retrieve (required)
+	PostId        *v1.PostId `protobuf:"bytes,1,opt,name=post_id,json=postId,proto3" json:"post_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -61,17 +62,17 @@ func (*GetPostRequest) Descriptor() ([]byte, []int) {
 	return file_pannpers_api_v1_post_service_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *GetPostRequest) GetPostId() string {
+func (x *GetPostRequest) GetPostId() *v1.PostId {
 	if x != nil {
 		return x.PostId
 	}
-	return ""
+	return nil
 }
 
 // GetPostResponse is the response message for GetPost
 type GetPostResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// The post resource
+	// The post resource (required)
 	Post          *v1.Post `protobuf:"bytes,1,opt,name=post,proto3" json:"post,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -117,9 +118,9 @@ func (x *GetPostResponse) GetPost() *v1.Post {
 // CreatePostRequest is the request message for CreatePost
 type CreatePostRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// The title of the post to create.
+	// The title of the post to create (required and must be valid)
 	Title *v1.PostTitle `protobuf:"bytes,1,opt,name=title,proto3" json:"title,omitempty"`
-	// The ID of the user creating the post.
+	// The ID of the user creating the post (required and must be valid)
 	AuthorId      *v1.UserId `protobuf:"bytes,2,opt,name=author_id,json=authorId,proto3" json:"author_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -172,7 +173,7 @@ func (x *CreatePostRequest) GetAuthorId() *v1.UserId {
 // CreatePostResponse is the response message for CreatePost
 type CreatePostResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// The created post resource
+	// The created post resource (required)
 	Post          *v1.Post `protobuf:"bytes,1,opt,name=post,proto3" json:"post,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -219,16 +220,16 @@ var File_pannpers_api_v1_post_service_proto protoreflect.FileDescriptor
 
 const file_pannpers_api_v1_post_service_proto_rawDesc = "" +
 	"\n" +
-	"\"pannpers/api/v1/post_service.proto\x12\x0fpannpers.api.v1\x1a\x1dpannpers/entity/v1/post.proto\x1a\x1dpannpers/entity/v1/user.proto\")\n" +
-	"\x0eGetPostRequest\x12\x17\n" +
-	"\apost_id\x18\x01 \x01(\tR\x06postId\"?\n" +
-	"\x0fGetPostResponse\x12,\n" +
-	"\x04post\x18\x01 \x01(\v2\x18.pannpers.entity.v1.PostR\x04post\"\x81\x01\n" +
-	"\x11CreatePostRequest\x123\n" +
-	"\x05title\x18\x01 \x01(\v2\x1d.pannpers.entity.v1.PostTitleR\x05title\x127\n" +
-	"\tauthor_id\x18\x02 \x01(\v2\x1a.pannpers.entity.v1.UserIdR\bauthorId\"B\n" +
-	"\x12CreatePostResponse\x12,\n" +
-	"\x04post\x18\x01 \x01(\v2\x18.pannpers.entity.v1.PostR\x04post2\xb2\x01\n" +
+	"\"pannpers/api/v1/post_service.proto\x12\x0fpannpers.api.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1dpannpers/entity/v1/post.proto\x1a\x1dpannpers/entity/v1/user.proto\"M\n" +
+	"\x0eGetPostRequest\x12;\n" +
+	"\apost_id\x18\x01 \x01(\v2\x1a.pannpers.entity.v1.PostIdB\x06\xbaH\x03\xc8\x01\x01R\x06postId\"G\n" +
+	"\x0fGetPostResponse\x124\n" +
+	"\x04post\x18\x01 \x01(\v2\x18.pannpers.entity.v1.PostB\x06\xbaH\x03\xc8\x01\x01R\x04post\"\x91\x01\n" +
+	"\x11CreatePostRequest\x12;\n" +
+	"\x05title\x18\x01 \x01(\v2\x1d.pannpers.entity.v1.PostTitleB\x06\xbaH\x03\xc8\x01\x01R\x05title\x12?\n" +
+	"\tauthor_id\x18\x02 \x01(\v2\x1a.pannpers.entity.v1.UserIdB\x06\xbaH\x03\xc8\x01\x01R\bauthorId\"J\n" +
+	"\x12CreatePostResponse\x124\n" +
+	"\x04post\x18\x01 \x01(\v2\x18.pannpers.entity.v1.PostB\x06\xbaH\x03\xc8\x01\x01R\x04post2\xb2\x01\n" +
 	"\vPostService\x12L\n" +
 	"\aGetPost\x12\x1f.pannpers.api.v1.GetPostRequest\x1a .pannpers.api.v1.GetPostResponse\x12U\n" +
 	"\n" +
@@ -253,24 +254,26 @@ var file_pannpers_api_v1_post_service_proto_goTypes = []any{
 	(*GetPostResponse)(nil),    // 1: pannpers.api.v1.GetPostResponse
 	(*CreatePostRequest)(nil),  // 2: pannpers.api.v1.CreatePostRequest
 	(*CreatePostResponse)(nil), // 3: pannpers.api.v1.CreatePostResponse
-	(*v1.Post)(nil),            // 4: pannpers.entity.v1.Post
-	(*v1.PostTitle)(nil),       // 5: pannpers.entity.v1.PostTitle
-	(*v1.UserId)(nil),          // 6: pannpers.entity.v1.UserId
+	(*v1.PostId)(nil),          // 4: pannpers.entity.v1.PostId
+	(*v1.Post)(nil),            // 5: pannpers.entity.v1.Post
+	(*v1.PostTitle)(nil),       // 6: pannpers.entity.v1.PostTitle
+	(*v1.UserId)(nil),          // 7: pannpers.entity.v1.UserId
 }
 var file_pannpers_api_v1_post_service_proto_depIdxs = []int32{
-	4, // 0: pannpers.api.v1.GetPostResponse.post:type_name -> pannpers.entity.v1.Post
-	5, // 1: pannpers.api.v1.CreatePostRequest.title:type_name -> pannpers.entity.v1.PostTitle
-	6, // 2: pannpers.api.v1.CreatePostRequest.author_id:type_name -> pannpers.entity.v1.UserId
-	4, // 3: pannpers.api.v1.CreatePostResponse.post:type_name -> pannpers.entity.v1.Post
-	0, // 4: pannpers.api.v1.PostService.GetPost:input_type -> pannpers.api.v1.GetPostRequest
-	2, // 5: pannpers.api.v1.PostService.CreatePost:input_type -> pannpers.api.v1.CreatePostRequest
-	1, // 6: pannpers.api.v1.PostService.GetPost:output_type -> pannpers.api.v1.GetPostResponse
-	3, // 7: pannpers.api.v1.PostService.CreatePost:output_type -> pannpers.api.v1.CreatePostResponse
-	6, // [6:8] is the sub-list for method output_type
-	4, // [4:6] is the sub-list for method input_type
-	4, // [4:4] is the sub-list for extension type_name
-	4, // [4:4] is the sub-list for extension extendee
-	0, // [0:4] is the sub-list for field type_name
+	4, // 0: pannpers.api.v1.GetPostRequest.post_id:type_name -> pannpers.entity.v1.PostId
+	5, // 1: pannpers.api.v1.GetPostResponse.post:type_name -> pannpers.entity.v1.Post
+	6, // 2: pannpers.api.v1.CreatePostRequest.title:type_name -> pannpers.entity.v1.PostTitle
+	7, // 3: pannpers.api.v1.CreatePostRequest.author_id:type_name -> pannpers.entity.v1.UserId
+	5, // 4: pannpers.api.v1.CreatePostResponse.post:type_name -> pannpers.entity.v1.Post
+	0, // 5: pannpers.api.v1.PostService.GetPost:input_type -> pannpers.api.v1.GetPostRequest
+	2, // 6: pannpers.api.v1.PostService.CreatePost:input_type -> pannpers.api.v1.CreatePostRequest
+	1, // 7: pannpers.api.v1.PostService.GetPost:output_type -> pannpers.api.v1.GetPostResponse
+	3, // 8: pannpers.api.v1.PostService.CreatePost:output_type -> pannpers.api.v1.CreatePostResponse
+	7, // [7:9] is the sub-list for method output_type
+	5, // [5:7] is the sub-list for method input_type
+	5, // [5:5] is the sub-list for extension type_name
+	5, // [5:5] is the sub-list for extension extendee
+	0, // [0:5] is the sub-list for field type_name
 }
 
 func init() { file_pannpers_api_v1_post_service_proto_init() }

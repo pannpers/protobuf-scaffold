@@ -4,6 +4,7 @@
 
 import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv2";
+import { file_buf_validate_validate } from "../../../buf/validate/validate_pb";
 import type { UserId } from "./user_pb";
 import { file_pannpers_entity_v1_user } from "./user_pb";
 import type { Message } from "@bufbuild/protobuf";
@@ -12,7 +13,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file pannpers/entity/v1/post.proto.
  */
 export const file_pannpers_entity_v1_post: GenFile = /*@__PURE__*/
-  fileDesc("Ch1wYW5ucGVycy9lbnRpdHkvdjEvcG9zdC5wcm90bxIScGFubnBlcnMuZW50aXR5LnYxIosBCgRQb3N0EiYKAmlkGAEgASgLMhoucGFubnBlcnMuZW50aXR5LnYxLlBvc3RJZBIsCgV0aXRsZRgCIAEoCzIdLnBhbm5wZXJzLmVudGl0eS52MS5Qb3N0VGl0bGUSLQoJYXV0aG9yX2lkGAMgASgLMhoucGFubnBlcnMuZW50aXR5LnYxLlVzZXJJZCIXCgZQb3N0SWQSDQoFdmFsdWUYASABKAkiGgoJUG9zdFRpdGxlEg0KBXZhbHVlGAEgASgJQtcBChZjb20ucGFubnBlcnMuZW50aXR5LnYxQglQb3N0UHJvdG9QAVpIZ2l0aHViLmNvbS9wYW5ucGVycy9wcm90b2J1Zi1zY2FmZm9sZC9nZW4vZ28vcGFubnBlcnMvZW50aXR5L3YxO2VudGl0eXYxogIDUEVYqgISUGFubnBlcnMuRW50aXR5LlYxygISUGFubnBlcnNcRW50aXR5XFYx4gIeUGFubnBlcnNcRW50aXR5XFYxXEdQQk1ldGFkYXRh6gIUUGFubnBlcnM6OkVudGl0eTo6VjFiBnByb3RvMw", [file_pannpers_entity_v1_user]);
+  fileDesc("Ch1wYW5ucGVycy9lbnRpdHkvdjEvcG9zdC5wcm90bxIScGFubnBlcnMuZW50aXR5LnYxIqMBCgRQb3N0Ei4KAmlkGAEgASgLMhoucGFubnBlcnMuZW50aXR5LnYxLlBvc3RJZEIGukgDyAEBEjQKBXRpdGxlGAIgASgLMh0ucGFubnBlcnMuZW50aXR5LnYxLlBvc3RUaXRsZUIGukgDyAEBEjUKCWF1dGhvcl9pZBgDIAEoCzIaLnBhbm5wZXJzLmVudGl0eS52MS5Vc2VySWRCBrpIA8gBASIhCgZQb3N0SWQSFwoFdmFsdWUYASABKAlCCLpIBXIDsAEBIiYKCVBvc3RUaXRsZRIZCgV2YWx1ZRgBIAEoCUIKukgHcgUQARjIAULXAQoWY29tLnBhbm5wZXJzLmVudGl0eS52MUIJUG9zdFByb3RvUAFaSGdpdGh1Yi5jb20vcGFubnBlcnMvcHJvdG9idWYtc2NhZmZvbGQvZ2VuL2dvL3Bhbm5wZXJzL2VudGl0eS92MTtlbnRpdHl2MaICA1BFWKoCElBhbm5wZXJzLkVudGl0eS5WMcoCElBhbm5wZXJzXEVudGl0eVxWMeICHlBhbm5wZXJzXEVudGl0eVxWMVxHUEJNZXRhZGF0YeoCFFBhbm5wZXJzOjpFbnRpdHk6OlYxYgZwcm90bzM", [file_buf_validate_validate, file_pannpers_entity_v1_user]);
 
 /**
  * Post entity
@@ -21,17 +22,21 @@ export const file_pannpers_entity_v1_post: GenFile = /*@__PURE__*/
  */
 export type Post = Message<"pannpers.entity.v1.Post"> & {
   /**
+   * Post ID is required
+   *
    * @generated from field: pannpers.entity.v1.PostId id = 1;
    */
   id?: PostId;
 
   /**
+   * Post title is required
+   *
    * @generated from field: pannpers.entity.v1.PostTitle title = 2;
    */
   title?: PostTitle;
 
   /**
-   * The ID of the user who created the post.
+   * The ID of the user who created the post is required
    *
    * @generated from field: pannpers.entity.v1.UserId author_id = 3;
    */
@@ -52,6 +57,8 @@ export const PostSchema: GenMessage<Post> = /*@__PURE__*/
  */
 export type PostId = Message<"pannpers.entity.v1.PostId"> & {
   /**
+   * Post ID must be a valid UUID format
+   *
    * @generated from field: string value = 1;
    */
   value: string;
@@ -71,6 +78,8 @@ export const PostIdSchema: GenMessage<PostId> = /*@__PURE__*/
  */
 export type PostTitle = Message<"pannpers.entity.v1.PostTitle"> & {
   /**
+   * Post title must be between 1 and 200 characters
+   *
    * @generated from field: string value = 1;
    */
   value: string;

@@ -96,12 +96,67 @@ When designing entities and RPC interfaces, follow these established standards:
 - **Resource-Oriented Design**: Structure APIs around resources, not actions
 - **Field Masks**: Use for partial updates in `Update` operations
 - **Pagination**: Implement for `List` operations using `page_size` and `page_token`
+- **Type Safety**: Use user-defined types instead of primitive types for parameters
+  - **Entity IDs**: Use `UserId`, `PostId` types instead of raw `string`
+  - **Domain Values**: Use `PostTitle`, `UserName` types instead of raw `string`
+  - **Consistency**: Ensure API parameters match entity field types exactly
+  - **Validation**: User-defined types carry their validation rules automatically
 
 ### Entity Design Patterns
 - **Value Objects**: Create dedicated message types for domain concepts (e.g., `PostId`, `PostTitle`)
 - **Composition**: Reference other entities by ID, not nested objects
 - **Versioning**: Plan for schema evolution with proper field numbering
 - **Documentation**: Over-document with complete sentences using `//` comments
+
+### Validation Rules (Protovalidate)
+- **Always import**: Add `import "buf/validate/validate.proto"` to files using validation
+- **Well-known Types**: Use built-in validation for common patterns:
+  - **UUID**: `[(buf.validate.field).string.uuid = true]` for UUID fields
+  - **Email**: `[(buf.validate.field).string.email = true]` for email addresses
+  - **URI**: `[(buf.validate.field).string.uri = true]` for URIs/URLs
+  - **URI Reference**: `[(buf.validate.field).string.uri_ref = true]` for URI references
+  - **IP Address**: `[(buf.validate.field).string.ip = true]` for IP addresses (v4 or v6)
+  - **IPv4**: `[(buf.validate.field).string.ipv4 = true]` for IPv4 addresses only
+  - **IPv6**: `[(buf.validate.field).string.ipv6 = true]` for IPv6 addresses only
+  - **Hostname**: `[(buf.validate.field).string.hostname = true]` for DNS hostnames
+  - **Well-formed**: `[(buf.validate.field).string.well_known_regex = KNOWN_REGEX_HTTP_HEADER_NAME]` for standard patterns
+- **String Constraints**: Always set reasonable limits:
+  - **Length**: Use `min_len` and `max_len` for all string fields
+  - **Pattern**: Use `pattern` for custom validation (regex)
+  - **Well-formed**: Prefer built-in validators over custom regex when available
+- **Required Fields**: Mark all mandatory fields with `[(buf.validate.field).required = true]`
+- **Nested Messages**: Validation cascades to nested message fields automatically
+- **Custom Constraints**: Use `pattern` for domain-specific validation rules only when built-ins don't suffice
+
+### Validation Best Practices
+- **ID Fields**: Use `uuid = true` for UUID-based identifiers instead of custom patterns
+- **Email Fields**: Use `email = true` instead of regex patterns for email validation
+- **Consistent Limits**: Apply consistent string length limits across similar field types
+- **Error Messages**: Built-in validators provide better error messages than custom regex
+- **Performance**: Built-in validators are more performant than regex patterns
+
+### RPC Parameter Type Design
+- **Never use primitive types** for domain concepts in RPC interfaces
+- **Entity References**: Use `UserId user_id = 1` instead of `string user_id = 1`
+- **Domain Values**: Use `PostTitle title = 1` instead of `string title = 1`
+- **Benefits of user-defined types**:
+  - **Type Safety**: Prevents mixing different ID types
+  - **Validation**: Automatic validation rule inheritance from value objects
+  - **Documentation**: Self-documenting API through meaningful type names
+  - **Evolution**: Easier to change validation rules in one place
+  - **Code Generation**: Better typed client code in target languages
+- **Examples**:
+  ```protobuf
+  // ❌ Bad: Using primitive types
+  message GetUserRequest {
+    string user_id = 1;
+  }
+  
+  // ✅ Good: Using user-defined types
+  message GetUserRequest {
+    entity.v1.UserId user_id = 1;
+  }
+  ```
 
 ### Breaking Change Management
 - Always check breaking changes against main branch

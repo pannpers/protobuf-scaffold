@@ -7,6 +7,7 @@
 package entityv1
 
 import (
+	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -23,10 +24,13 @@ const (
 
 // User entity
 type User struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            *UserId                `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name          *UserName              `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	Email         *UserEmail             `protobuf:"bytes,3,opt,name=email,proto3" json:"email,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// User ID is required
+	Id *UserId `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	// User name is required
+	Name *UserName `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	// User email is required
+	Email         *UserEmail `protobuf:"bytes,3,opt,name=email,proto3" json:"email,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -84,8 +88,9 @@ func (x *User) GetEmail() *UserEmail {
 
 // User ID value object
 type UserId struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Value         string                 `protobuf:"bytes,1,opt,name=value,proto3" json:"value,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// User ID must be a non-empty string with valid UUID format
+	Value         string `protobuf:"bytes,1,opt,name=value,proto3" json:"value,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -129,8 +134,9 @@ func (x *UserId) GetValue() string {
 
 // User name value object
 type UserName struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Value         string                 `protobuf:"bytes,1,opt,name=value,proto3" json:"value,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// User name must be between 1 and 100 characters
+	Value         string `protobuf:"bytes,1,opt,name=value,proto3" json:"value,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -174,8 +180,9 @@ func (x *UserName) GetValue() string {
 
 // User email value object
 type UserEmail struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Value         string                 `protobuf:"bytes,1,opt,name=value,proto3" json:"value,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// User email must be a valid email format
+	Value         string `protobuf:"bytes,1,opt,name=value,proto3" json:"value,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -221,17 +228,17 @@ var File_pannpers_entity_v1_user_proto protoreflect.FileDescriptor
 
 const file_pannpers_entity_v1_user_proto_rawDesc = "" +
 	"\n" +
-	"\x1dpannpers/entity/v1/user.proto\x12\x12pannpers.entity.v1\"\x99\x01\n" +
-	"\x04User\x12*\n" +
-	"\x02id\x18\x01 \x01(\v2\x1a.pannpers.entity.v1.UserIdR\x02id\x120\n" +
-	"\x04name\x18\x02 \x01(\v2\x1c.pannpers.entity.v1.UserNameR\x04name\x123\n" +
-	"\x05email\x18\x03 \x01(\v2\x1d.pannpers.entity.v1.UserEmailR\x05email\"\x1e\n" +
-	"\x06UserId\x12\x14\n" +
-	"\x05value\x18\x01 \x01(\tR\x05value\" \n" +
-	"\bUserName\x12\x14\n" +
-	"\x05value\x18\x01 \x01(\tR\x05value\"!\n" +
-	"\tUserEmail\x12\x14\n" +
-	"\x05value\x18\x01 \x01(\tR\x05valueB\xd7\x01\n" +
+	"\x1dpannpers/entity/v1/user.proto\x12\x12pannpers.entity.v1\x1a\x1bbuf/validate/validate.proto\"\xb1\x01\n" +
+	"\x04User\x122\n" +
+	"\x02id\x18\x01 \x01(\v2\x1a.pannpers.entity.v1.UserIdB\x06\xbaH\x03\xc8\x01\x01R\x02id\x128\n" +
+	"\x04name\x18\x02 \x01(\v2\x1c.pannpers.entity.v1.UserNameB\x06\xbaH\x03\xc8\x01\x01R\x04name\x12;\n" +
+	"\x05email\x18\x03 \x01(\v2\x1d.pannpers.entity.v1.UserEmailB\x06\xbaH\x03\xc8\x01\x01R\x05email\"(\n" +
+	"\x06UserId\x12\x1e\n" +
+	"\x05value\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x05value\"+\n" +
+	"\bUserName\x12\x1f\n" +
+	"\x05value\x18\x01 \x01(\tB\t\xbaH\x06r\x04\x10\x01\x18dR\x05value\"*\n" +
+	"\tUserEmail\x12\x1d\n" +
+	"\x05value\x18\x01 \x01(\tB\a\xbaH\x04r\x02`\x01R\x05valueB\xd7\x01\n" +
 	"\x16com.pannpers.entity.v1B\tUserProtoP\x01ZHgithub.com/pannpers/protobuf-scaffold/gen/go/pannpers/entity/v1;entityv1\xa2\x02\x03PEX\xaa\x02\x12Pannpers.Entity.V1\xca\x02\x12Pannpers\\Entity\\V1\xe2\x02\x1ePannpers\\Entity\\V1\\GPBMetadata\xea\x02\x14Pannpers::Entity::V1b\x06proto3"
 
 var (

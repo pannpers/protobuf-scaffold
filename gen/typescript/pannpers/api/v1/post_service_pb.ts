@@ -4,7 +4,8 @@
 
 import type { GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv2";
 import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv2";
-import type { Post, PostTitle } from "../../entity/v1/post_pb";
+import { file_buf_validate_validate } from "../../../buf/validate/validate_pb";
+import type { Post, PostId, PostTitle } from "../../entity/v1/post_pb";
 import { file_pannpers_entity_v1_post } from "../../entity/v1/post_pb";
 import type { UserId } from "../../entity/v1/user_pb";
 import { file_pannpers_entity_v1_user } from "../../entity/v1/user_pb";
@@ -14,7 +15,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file pannpers/api/v1/post_service.proto.
  */
 export const file_pannpers_api_v1_post_service: GenFile = /*@__PURE__*/
-  fileDesc("CiJwYW5ucGVycy9hcGkvdjEvcG9zdF9zZXJ2aWNlLnByb3RvEg9wYW5ucGVycy5hcGkudjEiIQoOR2V0UG9zdFJlcXVlc3QSDwoHcG9zdF9pZBgBIAEoCSI5Cg9HZXRQb3N0UmVzcG9uc2USJgoEcG9zdBgBIAEoCzIYLnBhbm5wZXJzLmVudGl0eS52MS5Qb3N0InAKEUNyZWF0ZVBvc3RSZXF1ZXN0EiwKBXRpdGxlGAEgASgLMh0ucGFubnBlcnMuZW50aXR5LnYxLlBvc3RUaXRsZRItCglhdXRob3JfaWQYAiABKAsyGi5wYW5ucGVycy5lbnRpdHkudjEuVXNlcklkIjwKEkNyZWF0ZVBvc3RSZXNwb25zZRImCgRwb3N0GAEgASgLMhgucGFubnBlcnMuZW50aXR5LnYxLlBvc3QysgEKC1Bvc3RTZXJ2aWNlEkwKB0dldFBvc3QSHy5wYW5ucGVycy5hcGkudjEuR2V0UG9zdFJlcXVlc3QaIC5wYW5ucGVycy5hcGkudjEuR2V0UG9zdFJlc3BvbnNlElUKCkNyZWF0ZVBvc3QSIi5wYW5ucGVycy5hcGkudjEuQ3JlYXRlUG9zdFJlcXVlc3QaIy5wYW5ucGVycy5hcGkudjEuQ3JlYXRlUG9zdFJlc3BvbnNlQskBChNjb20ucGFubnBlcnMuYXBpLnYxQhBQb3N0U2VydmljZVByb3RvUAFaQmdpdGh1Yi5jb20vcGFubnBlcnMvcHJvdG9idWYtc2NhZmZvbGQvZ2VuL2dvL3Bhbm5wZXJzL2FwaS92MTthcGl2MaICA1BBWKoCD1Bhbm5wZXJzLkFwaS5WMcoCD1Bhbm5wZXJzXEFwaVxWMeICG1Bhbm5wZXJzXEFwaVxWMVxHUEJNZXRhZGF0YeoCEVBhbm5wZXJzOjpBcGk6OlYxYgZwcm90bzM", [file_pannpers_entity_v1_post, file_pannpers_entity_v1_user]);
+  fileDesc("CiJwYW5ucGVycy9hcGkvdjEvcG9zdF9zZXJ2aWNlLnByb3RvEg9wYW5ucGVycy5hcGkudjEiRQoOR2V0UG9zdFJlcXVlc3QSMwoHcG9zdF9pZBgBIAEoCzIaLnBhbm5wZXJzLmVudGl0eS52MS5Qb3N0SWRCBrpIA8gBASJBCg9HZXRQb3N0UmVzcG9uc2USLgoEcG9zdBgBIAEoCzIYLnBhbm5wZXJzLmVudGl0eS52MS5Qb3N0Qga6SAPIAQEigAEKEUNyZWF0ZVBvc3RSZXF1ZXN0EjQKBXRpdGxlGAEgASgLMh0ucGFubnBlcnMuZW50aXR5LnYxLlBvc3RUaXRsZUIGukgDyAEBEjUKCWF1dGhvcl9pZBgCIAEoCzIaLnBhbm5wZXJzLmVudGl0eS52MS5Vc2VySWRCBrpIA8gBASJEChJDcmVhdGVQb3N0UmVzcG9uc2USLgoEcG9zdBgBIAEoCzIYLnBhbm5wZXJzLmVudGl0eS52MS5Qb3N0Qga6SAPIAQEysgEKC1Bvc3RTZXJ2aWNlEkwKB0dldFBvc3QSHy5wYW5ucGVycy5hcGkudjEuR2V0UG9zdFJlcXVlc3QaIC5wYW5ucGVycy5hcGkudjEuR2V0UG9zdFJlc3BvbnNlElUKCkNyZWF0ZVBvc3QSIi5wYW5ucGVycy5hcGkudjEuQ3JlYXRlUG9zdFJlcXVlc3QaIy5wYW5ucGVycy5hcGkudjEuQ3JlYXRlUG9zdFJlc3BvbnNlQskBChNjb20ucGFubnBlcnMuYXBpLnYxQhBQb3N0U2VydmljZVByb3RvUAFaQmdpdGh1Yi5jb20vcGFubnBlcnMvcHJvdG9idWYtc2NhZmZvbGQvZ2VuL2dvL3Bhbm5wZXJzL2FwaS92MTthcGl2MaICA1BBWKoCD1Bhbm5wZXJzLkFwaS5WMcoCD1Bhbm5wZXJzXEFwaVxWMeICG1Bhbm5wZXJzXEFwaVxWMVxHUEJNZXRhZGF0YeoCEVBhbm5wZXJzOjpBcGk6OlYxYgZwcm90bzM", [file_buf_validate_validate, file_pannpers_entity_v1_post, file_pannpers_entity_v1_user]);
 
 /**
  * GetPostRequest is the request message for GetPost
@@ -23,11 +24,11 @@ export const file_pannpers_api_v1_post_service: GenFile = /*@__PURE__*/
  */
 export type GetPostRequest = Message<"pannpers.api.v1.GetPostRequest"> & {
   /**
-   * The unique identifier of the post to retrieve
+   * The unique identifier of the post to retrieve (required)
    *
-   * @generated from field: string post_id = 1;
+   * @generated from field: pannpers.entity.v1.PostId post_id = 1;
    */
-  postId: string;
+  postId?: PostId;
 };
 
 /**
@@ -44,7 +45,7 @@ export const GetPostRequestSchema: GenMessage<GetPostRequest> = /*@__PURE__*/
  */
 export type GetPostResponse = Message<"pannpers.api.v1.GetPostResponse"> & {
   /**
-   * The post resource
+   * The post resource (required)
    *
    * @generated from field: pannpers.entity.v1.Post post = 1;
    */
@@ -65,14 +66,14 @@ export const GetPostResponseSchema: GenMessage<GetPostResponse> = /*@__PURE__*/
  */
 export type CreatePostRequest = Message<"pannpers.api.v1.CreatePostRequest"> & {
   /**
-   * The title of the post to create.
+   * The title of the post to create (required and must be valid)
    *
    * @generated from field: pannpers.entity.v1.PostTitle title = 1;
    */
   title?: PostTitle;
 
   /**
-   * The ID of the user creating the post.
+   * The ID of the user creating the post (required and must be valid)
    *
    * @generated from field: pannpers.entity.v1.UserId author_id = 2;
    */
@@ -93,7 +94,7 @@ export const CreatePostRequestSchema: GenMessage<CreatePostRequest> = /*@__PURE_
  */
 export type CreatePostResponse = Message<"pannpers.api.v1.CreatePostResponse"> & {
   /**
-   * The created post resource
+   * The created post resource (required)
    *
    * @generated from field: pannpers.entity.v1.Post post = 1;
    */

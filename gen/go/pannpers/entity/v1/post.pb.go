@@ -7,6 +7,7 @@
 package entityv1
 
 import (
+	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -24,9 +25,11 @@ const (
 // Post entity
 type Post struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	Id    *PostId                `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Title *PostTitle             `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
-	// The ID of the user who created the post.
+	// Post ID is required
+	Id *PostId `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	// Post title is required
+	Title *PostTitle `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
+	// The ID of the user who created the post is required
 	AuthorId      *UserId `protobuf:"bytes,3,opt,name=author_id,json=authorId,proto3" json:"author_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -85,8 +88,9 @@ func (x *Post) GetAuthorId() *UserId {
 
 // Post ID value object
 type PostId struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Value         string                 `protobuf:"bytes,1,opt,name=value,proto3" json:"value,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Post ID must be a valid UUID format
+	Value         string `protobuf:"bytes,1,opt,name=value,proto3" json:"value,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -130,8 +134,9 @@ func (x *PostId) GetValue() string {
 
 // Post title value object
 type PostTitle struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Value         string                 `protobuf:"bytes,1,opt,name=value,proto3" json:"value,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Post title must be between 1 and 200 characters
+	Value         string `protobuf:"bytes,1,opt,name=value,proto3" json:"value,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -177,15 +182,16 @@ var File_pannpers_entity_v1_post_proto protoreflect.FileDescriptor
 
 const file_pannpers_entity_v1_post_proto_rawDesc = "" +
 	"\n" +
-	"\x1dpannpers/entity/v1/post.proto\x12\x12pannpers.entity.v1\x1a\x1dpannpers/entity/v1/user.proto\"\xa0\x01\n" +
-	"\x04Post\x12*\n" +
-	"\x02id\x18\x01 \x01(\v2\x1a.pannpers.entity.v1.PostIdR\x02id\x123\n" +
-	"\x05title\x18\x02 \x01(\v2\x1d.pannpers.entity.v1.PostTitleR\x05title\x127\n" +
-	"\tauthor_id\x18\x03 \x01(\v2\x1a.pannpers.entity.v1.UserIdR\bauthorId\"\x1e\n" +
-	"\x06PostId\x12\x14\n" +
-	"\x05value\x18\x01 \x01(\tR\x05value\"!\n" +
-	"\tPostTitle\x12\x14\n" +
-	"\x05value\x18\x01 \x01(\tR\x05valueB\xd7\x01\n" +
+	"\x1dpannpers/entity/v1/post.proto\x12\x12pannpers.entity.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1dpannpers/entity/v1/user.proto\"\xb8\x01\n" +
+	"\x04Post\x122\n" +
+	"\x02id\x18\x01 \x01(\v2\x1a.pannpers.entity.v1.PostIdB\x06\xbaH\x03\xc8\x01\x01R\x02id\x12;\n" +
+	"\x05title\x18\x02 \x01(\v2\x1d.pannpers.entity.v1.PostTitleB\x06\xbaH\x03\xc8\x01\x01R\x05title\x12?\n" +
+	"\tauthor_id\x18\x03 \x01(\v2\x1a.pannpers.entity.v1.UserIdB\x06\xbaH\x03\xc8\x01\x01R\bauthorId\"(\n" +
+	"\x06PostId\x12\x1e\n" +
+	"\x05value\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x05value\"-\n" +
+	"\tPostTitle\x12 \n" +
+	"\x05value\x18\x01 \x01(\tB\n" +
+	"\xbaH\ar\x05\x10\x01\x18\xc8\x01R\x05valueB\xd7\x01\n" +
 	"\x16com.pannpers.entity.v1B\tPostProtoP\x01ZHgithub.com/pannpers/protobuf-scaffold/gen/go/pannpers/entity/v1;entityv1\xa2\x02\x03PEX\xaa\x02\x12Pannpers.Entity.V1\xca\x02\x12Pannpers\\Entity\\V1\xe2\x02\x1ePannpers\\Entity\\V1\\GPBMetadata\xea\x02\x14Pannpers::Entity::V1b\x06proto3"
 
 var (

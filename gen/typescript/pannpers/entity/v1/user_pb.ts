@@ -4,13 +4,14 @@
 
 import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv2";
+import { file_buf_validate_validate } from "../../../buf/validate/validate_pb";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file pannpers/entity/v1/user.proto.
  */
 export const file_pannpers_entity_v1_user: GenFile = /*@__PURE__*/
-  fileDesc("Ch1wYW5ucGVycy9lbnRpdHkvdjEvdXNlci5wcm90bxIScGFubnBlcnMuZW50aXR5LnYxIogBCgRVc2VyEiYKAmlkGAEgASgLMhoucGFubnBlcnMuZW50aXR5LnYxLlVzZXJJZBIqCgRuYW1lGAIgASgLMhwucGFubnBlcnMuZW50aXR5LnYxLlVzZXJOYW1lEiwKBWVtYWlsGAMgASgLMh0ucGFubnBlcnMuZW50aXR5LnYxLlVzZXJFbWFpbCIXCgZVc2VySWQSDQoFdmFsdWUYASABKAkiGQoIVXNlck5hbWUSDQoFdmFsdWUYASABKAkiGgoJVXNlckVtYWlsEg0KBXZhbHVlGAEgASgJQtcBChZjb20ucGFubnBlcnMuZW50aXR5LnYxQglVc2VyUHJvdG9QAVpIZ2l0aHViLmNvbS9wYW5ucGVycy9wcm90b2J1Zi1zY2FmZm9sZC9nZW4vZ28vcGFubnBlcnMvZW50aXR5L3YxO2VudGl0eXYxogIDUEVYqgISUGFubnBlcnMuRW50aXR5LlYxygISUGFubnBlcnNcRW50aXR5XFYx4gIeUGFubnBlcnNcRW50aXR5XFYxXEdQQk1ldGFkYXRh6gIUUGFubnBlcnM6OkVudGl0eTo6VjFiBnByb3RvMw");
+  fileDesc("Ch1wYW5ucGVycy9lbnRpdHkvdjEvdXNlci5wcm90bxIScGFubnBlcnMuZW50aXR5LnYxIqABCgRVc2VyEi4KAmlkGAEgASgLMhoucGFubnBlcnMuZW50aXR5LnYxLlVzZXJJZEIGukgDyAEBEjIKBG5hbWUYAiABKAsyHC5wYW5ucGVycy5lbnRpdHkudjEuVXNlck5hbWVCBrpIA8gBARI0CgVlbWFpbBgDIAEoCzIdLnBhbm5wZXJzLmVudGl0eS52MS5Vc2VyRW1haWxCBrpIA8gBASIhCgZVc2VySWQSFwoFdmFsdWUYASABKAlCCLpIBXIDsAEBIiQKCFVzZXJOYW1lEhgKBXZhbHVlGAEgASgJQgm6SAZyBBABGGQiIwoJVXNlckVtYWlsEhYKBXZhbHVlGAEgASgJQge6SARyAmABQtcBChZjb20ucGFubnBlcnMuZW50aXR5LnYxQglVc2VyUHJvdG9QAVpIZ2l0aHViLmNvbS9wYW5ucGVycy9wcm90b2J1Zi1zY2FmZm9sZC9nZW4vZ28vcGFubnBlcnMvZW50aXR5L3YxO2VudGl0eXYxogIDUEVYqgISUGFubnBlcnMuRW50aXR5LlYxygISUGFubnBlcnNcRW50aXR5XFYx4gIeUGFubnBlcnNcRW50aXR5XFYxXEdQQk1ldGFkYXRh6gIUUGFubnBlcnM6OkVudGl0eTo6VjFiBnByb3RvMw", [file_buf_validate_validate]);
 
 /**
  * User entity
@@ -19,16 +20,22 @@ export const file_pannpers_entity_v1_user: GenFile = /*@__PURE__*/
  */
 export type User = Message<"pannpers.entity.v1.User"> & {
   /**
+   * User ID is required
+   *
    * @generated from field: pannpers.entity.v1.UserId id = 1;
    */
   id?: UserId;
 
   /**
+   * User name is required
+   *
    * @generated from field: pannpers.entity.v1.UserName name = 2;
    */
   name?: UserName;
 
   /**
+   * User email is required
+   *
    * @generated from field: pannpers.entity.v1.UserEmail email = 3;
    */
   email?: UserEmail;
@@ -48,6 +55,8 @@ export const UserSchema: GenMessage<User> = /*@__PURE__*/
  */
 export type UserId = Message<"pannpers.entity.v1.UserId"> & {
   /**
+   * User ID must be a non-empty string with valid UUID format
+   *
    * @generated from field: string value = 1;
    */
   value: string;
@@ -67,6 +76,8 @@ export const UserIdSchema: GenMessage<UserId> = /*@__PURE__*/
  */
 export type UserName = Message<"pannpers.entity.v1.UserName"> & {
   /**
+   * User name must be between 1 and 100 characters
+   *
    * @generated from field: string value = 1;
    */
   value: string;
@@ -86,6 +97,8 @@ export const UserNameSchema: GenMessage<UserName> = /*@__PURE__*/
  */
 export type UserEmail = Message<"pannpers.entity.v1.UserEmail"> & {
   /**
+   * User email must be a valid email format
+   *
    * @generated from field: string value = 1;
    */
   value: string;

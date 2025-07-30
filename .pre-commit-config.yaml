@@ -20,13 +20,13 @@ repos:
         entry: buf lint
         language: system
         types: [proto]
-        pass_filenames: true
+        pass_filenames: false
       - id: buf-format
         name: buf format
         entry: buf format -w
         language: system
         types: [proto]
-        pass_filenames: true
+        pass_filenames: false
       - id: buf-breaking
         name: buf breaking
         entry: buf breaking --against '.git#branch=main'

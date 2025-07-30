@@ -7,6 +7,7 @@
 package apiv1
 
 import (
+	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
 	v1 "github.com/pannpers/protobuf-scaffold/gen/go/pannpers/entity/v1"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
@@ -25,8 +26,8 @@ const (
 // GetUserRequest is the request message for GetUser
 type GetUserRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// The unique identifier of the user to retrieve
-	UserId        string `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	// The unique identifier of the user to retrieve (required)
+	UserId        *v1.UserId `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -61,17 +62,17 @@ func (*GetUserRequest) Descriptor() ([]byte, []int) {
 	return file_pannpers_api_v1_user_service_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *GetUserRequest) GetUserId() string {
+func (x *GetUserRequest) GetUserId() *v1.UserId {
 	if x != nil {
 		return x.UserId
 	}
-	return ""
+	return nil
 }
 
 // GetUserResponse is the response message for GetUser
 type GetUserResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// The user resource
+	// The user resource (required)
 	User          *v1.User `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -117,7 +118,7 @@ func (x *GetUserResponse) GetUser() *v1.User {
 // CreateUserRequest is the request message for CreateUser
 type CreateUserRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// The user resource to create
+	// The user resource to create (required and must be valid)
 	User          *v1.User `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -163,7 +164,7 @@ func (x *CreateUserRequest) GetUser() *v1.User {
 // CreateUserResponse is the response message for CreateUser
 type CreateUserResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// The created user resource
+	// The created user resource (required)
 	User          *v1.User `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -210,15 +211,15 @@ var File_pannpers_api_v1_user_service_proto protoreflect.FileDescriptor
 
 const file_pannpers_api_v1_user_service_proto_rawDesc = "" +
 	"\n" +
-	"\"pannpers/api/v1/user_service.proto\x12\x0fpannpers.api.v1\x1a\x1dpannpers/entity/v1/user.proto\")\n" +
-	"\x0eGetUserRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\"?\n" +
-	"\x0fGetUserResponse\x12,\n" +
-	"\x04user\x18\x01 \x01(\v2\x18.pannpers.entity.v1.UserR\x04user\"A\n" +
-	"\x11CreateUserRequest\x12,\n" +
-	"\x04user\x18\x01 \x01(\v2\x18.pannpers.entity.v1.UserR\x04user\"B\n" +
-	"\x12CreateUserResponse\x12,\n" +
-	"\x04user\x18\x01 \x01(\v2\x18.pannpers.entity.v1.UserR\x04user2\xb2\x01\n" +
+	"\"pannpers/api/v1/user_service.proto\x12\x0fpannpers.api.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1dpannpers/entity/v1/user.proto\"M\n" +
+	"\x0eGetUserRequest\x12;\n" +
+	"\auser_id\x18\x01 \x01(\v2\x1a.pannpers.entity.v1.UserIdB\x06\xbaH\x03\xc8\x01\x01R\x06userId\"G\n" +
+	"\x0fGetUserResponse\x124\n" +
+	"\x04user\x18\x01 \x01(\v2\x18.pannpers.entity.v1.UserB\x06\xbaH\x03\xc8\x01\x01R\x04user\"I\n" +
+	"\x11CreateUserRequest\x124\n" +
+	"\x04user\x18\x01 \x01(\v2\x18.pannpers.entity.v1.UserB\x06\xbaH\x03\xc8\x01\x01R\x04user\"J\n" +
+	"\x12CreateUserResponse\x124\n" +
+	"\x04user\x18\x01 \x01(\v2\x18.pannpers.entity.v1.UserB\x06\xbaH\x03\xc8\x01\x01R\x04user2\xb2\x01\n" +
 	"\vUserService\x12L\n" +
 	"\aGetUser\x12\x1f.pannpers.api.v1.GetUserRequest\x1a .pannpers.api.v1.GetUserResponse\x12U\n" +
 	"\n" +
@@ -243,21 +244,23 @@ var file_pannpers_api_v1_user_service_proto_goTypes = []any{
 	(*GetUserResponse)(nil),    // 1: pannpers.api.v1.GetUserResponse
 	(*CreateUserRequest)(nil),  // 2: pannpers.api.v1.CreateUserRequest
 	(*CreateUserResponse)(nil), // 3: pannpers.api.v1.CreateUserResponse
-	(*v1.User)(nil),            // 4: pannpers.entity.v1.User
+	(*v1.UserId)(nil),          // 4: pannpers.entity.v1.UserId
+	(*v1.User)(nil),            // 5: pannpers.entity.v1.User
 }
 var file_pannpers_api_v1_user_service_proto_depIdxs = []int32{
-	4, // 0: pannpers.api.v1.GetUserResponse.user:type_name -> pannpers.entity.v1.User
-	4, // 1: pannpers.api.v1.CreateUserRequest.user:type_name -> pannpers.entity.v1.User
-	4, // 2: pannpers.api.v1.CreateUserResponse.user:type_name -> pannpers.entity.v1.User
-	0, // 3: pannpers.api.v1.UserService.GetUser:input_type -> pannpers.api.v1.GetUserRequest
-	2, // 4: pannpers.api.v1.UserService.CreateUser:input_type -> pannpers.api.v1.CreateUserRequest
-	1, // 5: pannpers.api.v1.UserService.GetUser:output_type -> pannpers.api.v1.GetUserResponse
-	3, // 6: pannpers.api.v1.UserService.CreateUser:output_type -> pannpers.api.v1.CreateUserResponse
-	5, // [5:7] is the sub-list for method output_type
-	3, // [3:5] is the sub-list for method input_type
-	3, // [3:3] is the sub-list for extension type_name
-	3, // [3:3] is the sub-list for extension extendee
-	0, // [0:3] is the sub-list for field type_name
+	4, // 0: pannpers.api.v1.GetUserRequest.user_id:type_name -> pannpers.entity.v1.UserId
+	5, // 1: pannpers.api.v1.GetUserResponse.user:type_name -> pannpers.entity.v1.User
+	5, // 2: pannpers.api.v1.CreateUserRequest.user:type_name -> pannpers.entity.v1.User
+	5, // 3: pannpers.api.v1.CreateUserResponse.user:type_name -> pannpers.entity.v1.User
+	0, // 4: pannpers.api.v1.UserService.GetUser:input_type -> pannpers.api.v1.GetUserRequest
+	2, // 5: pannpers.api.v1.UserService.CreateUser:input_type -> pannpers.api.v1.CreateUserRequest
+	1, // 6: pannpers.api.v1.UserService.GetUser:output_type -> pannpers.api.v1.GetUserResponse
+	3, // 7: pannpers.api.v1.UserService.CreateUser:output_type -> pannpers.api.v1.CreateUserResponse
+	6, // [6:8] is the sub-list for method output_type
+	4, // [4:6] is the sub-list for method input_type
+	4, // [4:4] is the sub-list for extension type_name
+	4, // [4:4] is the sub-list for extension extendee
+	0, // [0:4] is the sub-list for field type_name
 }
 
 func init() { file_pannpers_api_v1_user_service_proto_init() }

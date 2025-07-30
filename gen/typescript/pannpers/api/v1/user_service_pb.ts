@@ -4,7 +4,8 @@
 
 import type { GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv2";
 import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv2";
-import type { User } from "../../entity/v1/user_pb";
+import { file_buf_validate_validate } from "../../../buf/validate/validate_pb";
+import type { User, UserId } from "../../entity/v1/user_pb";
 import { file_pannpers_entity_v1_user } from "../../entity/v1/user_pb";
 import type { Message } from "@bufbuild/protobuf";
 
@@ -12,7 +13,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file pannpers/api/v1/user_service.proto.
  */
 export const file_pannpers_api_v1_user_service: GenFile = /*@__PURE__*/
-  fileDesc("CiJwYW5ucGVycy9hcGkvdjEvdXNlcl9zZXJ2aWNlLnByb3RvEg9wYW5ucGVycy5hcGkudjEiIQoOR2V0VXNlclJlcXVlc3QSDwoHdXNlcl9pZBgBIAEoCSI5Cg9HZXRVc2VyUmVzcG9uc2USJgoEdXNlchgBIAEoCzIYLnBhbm5wZXJzLmVudGl0eS52MS5Vc2VyIjsKEUNyZWF0ZVVzZXJSZXF1ZXN0EiYKBHVzZXIYASABKAsyGC5wYW5ucGVycy5lbnRpdHkudjEuVXNlciI8ChJDcmVhdGVVc2VyUmVzcG9uc2USJgoEdXNlchgBIAEoCzIYLnBhbm5wZXJzLmVudGl0eS52MS5Vc2VyMrIBCgtVc2VyU2VydmljZRJMCgdHZXRVc2VyEh8ucGFubnBlcnMuYXBpLnYxLkdldFVzZXJSZXF1ZXN0GiAucGFubnBlcnMuYXBpLnYxLkdldFVzZXJSZXNwb25zZRJVCgpDcmVhdGVVc2VyEiIucGFubnBlcnMuYXBpLnYxLkNyZWF0ZVVzZXJSZXF1ZXN0GiMucGFubnBlcnMuYXBpLnYxLkNyZWF0ZVVzZXJSZXNwb25zZULJAQoTY29tLnBhbm5wZXJzLmFwaS52MUIQVXNlclNlcnZpY2VQcm90b1ABWkJnaXRodWIuY29tL3Bhbm5wZXJzL3Byb3RvYnVmLXNjYWZmb2xkL2dlbi9nby9wYW5ucGVycy9hcGkvdjE7YXBpdjGiAgNQQViqAg9QYW5ucGVycy5BcGkuVjHKAg9QYW5ucGVyc1xBcGlcVjHiAhtQYW5ucGVyc1xBcGlcVjFcR1BCTWV0YWRhdGHqAhFQYW5ucGVyczo6QXBpOjpWMWIGcHJvdG8z", [file_pannpers_entity_v1_user]);
+  fileDesc("CiJwYW5ucGVycy9hcGkvdjEvdXNlcl9zZXJ2aWNlLnByb3RvEg9wYW5ucGVycy5hcGkudjEiRQoOR2V0VXNlclJlcXVlc3QSMwoHdXNlcl9pZBgBIAEoCzIaLnBhbm5wZXJzLmVudGl0eS52MS5Vc2VySWRCBrpIA8gBASJBCg9HZXRVc2VyUmVzcG9uc2USLgoEdXNlchgBIAEoCzIYLnBhbm5wZXJzLmVudGl0eS52MS5Vc2VyQga6SAPIAQEiQwoRQ3JlYXRlVXNlclJlcXVlc3QSLgoEdXNlchgBIAEoCzIYLnBhbm5wZXJzLmVudGl0eS52MS5Vc2VyQga6SAPIAQEiRAoSQ3JlYXRlVXNlclJlc3BvbnNlEi4KBHVzZXIYASABKAsyGC5wYW5ucGVycy5lbnRpdHkudjEuVXNlckIGukgDyAEBMrIBCgtVc2VyU2VydmljZRJMCgdHZXRVc2VyEh8ucGFubnBlcnMuYXBpLnYxLkdldFVzZXJSZXF1ZXN0GiAucGFubnBlcnMuYXBpLnYxLkdldFVzZXJSZXNwb25zZRJVCgpDcmVhdGVVc2VyEiIucGFubnBlcnMuYXBpLnYxLkNyZWF0ZVVzZXJSZXF1ZXN0GiMucGFubnBlcnMuYXBpLnYxLkNyZWF0ZVVzZXJSZXNwb25zZULJAQoTY29tLnBhbm5wZXJzLmFwaS52MUIQVXNlclNlcnZpY2VQcm90b1ABWkJnaXRodWIuY29tL3Bhbm5wZXJzL3Byb3RvYnVmLXNjYWZmb2xkL2dlbi9nby9wYW5ucGVycy9hcGkvdjE7YXBpdjGiAgNQQViqAg9QYW5ucGVycy5BcGkuVjHKAg9QYW5ucGVyc1xBcGlcVjHiAhtQYW5ucGVyc1xBcGlcVjFcR1BCTWV0YWRhdGHqAhFQYW5ucGVyczo6QXBpOjpWMWIGcHJvdG8z", [file_buf_validate_validate, file_pannpers_entity_v1_user]);
 
 /**
  * GetUserRequest is the request message for GetUser
@@ -21,11 +22,11 @@ export const file_pannpers_api_v1_user_service: GenFile = /*@__PURE__*/
  */
 export type GetUserRequest = Message<"pannpers.api.v1.GetUserRequest"> & {
   /**
-   * The unique identifier of the user to retrieve
+   * The unique identifier of the user to retrieve (required)
    *
-   * @generated from field: string user_id = 1;
+   * @generated from field: pannpers.entity.v1.UserId user_id = 1;
    */
-  userId: string;
+  userId?: UserId;
 };
 
 /**
@@ -42,7 +43,7 @@ export const GetUserRequestSchema: GenMessage<GetUserRequest> = /*@__PURE__*/
  */
 export type GetUserResponse = Message<"pannpers.api.v1.GetUserResponse"> & {
   /**
-   * The user resource
+   * The user resource (required)
    *
    * @generated from field: pannpers.entity.v1.User user = 1;
    */
@@ -63,7 +64,7 @@ export const GetUserResponseSchema: GenMessage<GetUserResponse> = /*@__PURE__*/
  */
 export type CreateUserRequest = Message<"pannpers.api.v1.CreateUserRequest"> & {
   /**
-   * The user resource to create
+   * The user resource to create (required and must be valid)
    *
    * @generated from field: pannpers.entity.v1.User user = 1;
    */
@@ -84,7 +85,7 @@ export const CreateUserRequestSchema: GenMessage<CreateUserRequest> = /*@__PURE_
  */
 export type CreateUserResponse = Message<"pannpers.api.v1.CreateUserResponse"> & {
   /**
-   * The created user resource
+   * The created user resource (required)
    *
    * @generated from field: pannpers.entity.v1.User user = 1;
    */
