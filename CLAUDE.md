@@ -44,7 +44,7 @@ The repository uses Buf Schema Registry (BSR) with remote code generation:
 - **Consumer Access**: Generated code available via Go modules and npm packages
 - **Plugins Used**:
   - `buf.build/protocolbuffers/go` - Standard Go protobuf generation
-  - `buf.build/connectrpc/go` - Connect RPC Go bindings  
+  - `buf.build/connectrpc/go` - Connect RPC Go bindings
   - `buf.build/bufbuild/es` - TypeScript protobuf generation
   - `buf.build/bufbuild/connect-es` - Connect RPC TypeScript bindings
   - `buf.build/bufbuild/validate-go` - Go validation code generation
@@ -125,7 +125,7 @@ When designing entities and RPC interfaces, follow these established standards:
 ### RPC Interface Design (Google AIP)
 - **Standard Methods**: Follow standard CRUD patterns
   - `Get{Resource}` for single resource retrieval
-  - `List{Resource}` for collection retrieval  
+  - `List{Resource}` for collection retrieval
   - `Create{Resource}` for resource creation
   - `Update{Resource}` for resource modification
   - `Delete{Resource}` for resource removal
@@ -189,7 +189,7 @@ Follow [Buf Documentation Guidelines](https://buf.build/docs/bsr/documentation) 
     // GetUser retrieves a single user by their unique identifier.
     // Returns NOT_FOUND if the user does not exist.
     rpc GetUser(GetUserRequest) returns (GetUserResponse);
-    
+
     // CreateUser creates a new user account with the provided information.
     // Returns ALREADY_EXISTS if a user with the same email already exists.
     rpc CreateUser(CreateUserRequest) returns (CreateUserResponse);
@@ -267,7 +267,7 @@ Follow [Buf Documentation Guidelines](https://buf.build/docs/bsr/documentation) 
   message GetUserRequest {
     string user_id = 1;
   }
-  
+
   // ✅ Good: Using user-defined types
   message GetUserRequest {
     entity.v1.UserId user_id = 1;

@@ -25,12 +25,12 @@ body:
       render: protobuf
       placeholder: |
         syntax = "proto3";
-        
+
         message PageRequest {
           int32 page = 1;
           int32 page_size = 2;
         }
-        
+
         message PageResponse {
           int32 total_count = 1;
           int32 page = 2;

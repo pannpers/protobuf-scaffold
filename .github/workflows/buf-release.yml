@@ -4,6 +4,10 @@ on:
   release:
     types: [published]
 
+permissions:
+  contents: read
+  pull-requests: write
+
 jobs:
   buf-push:
     runs-on: ubuntu-latest
@@ -11,16 +15,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Extract version from tag
-        id: version
-        run: |
-          VERSION="${{ github.event.release.tag_name }}"
-          echo "version=${VERSION}" >> $GITHUB_OUTPUT
-
       - name: Buf push to BSR with release label
         uses: bufbuild/buf-action@v1
         with:
-          github_token: ${{ github.token }}
-          push: true
-          buf_token: ${{ secrets.BUF_TOKEN }}
-          buf_push_label: ${{ steps.version.outputs.version }}
+          token: ${{ secrets.BUF_TOKEN }}
