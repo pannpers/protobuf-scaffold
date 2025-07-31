@@ -55,15 +55,29 @@ The repository uses Buf Schema Registry (BSR) with remote code generation:
 - Uses proper import paths and Go package declarations
 
 ### Automated Workflow
-The repository uses pre-commit hooks for quality control:
+The repository uses multiple automation layers for quality control and deployment:
+
+#### Pre-commit Hooks
 - **Commit hooks**: buf lint, format, breaking change detection, prettier
 - **Push hooks**: Push schemas to BSR for remote code generation
+
+#### GitHub Actions
+- **PR Workflow** (`.github/workflows/buf-pr.yml`): Runs on all PR events including label changes
+  - Buf lint validation
+  - Format checking with `buf format --diff --exit-code`
+  - Breaking change detection against base branch
+  - Dry-run code generation validation
+- **Release Workflow** (`.github/workflows/buf-release.yml`): Runs when GitHub releases are published
+  - Automatic `buf push` with release tag as BSR label
+  - Requires `BUF_TOKEN` secret for BSR authentication
 
 ### Key Files
 - `buf.yaml` - Buf v2 configuration with googleapis dependencies
 - `buf.gen.yaml` - Code generation plugin configuration for BSR
 - `.pre-commit-config.yaml` - Hook definitions for quality gates
 - `.mise/config.toml` - Tool version management
+- `.github/workflows/buf-pr.yml` - GitHub Actions for PR validation
+- `.github/workflows/buf-release.yml` - GitHub Actions for release automation
 
 ### Using Generated Code
 Consumers can access generated code from BSR:
@@ -274,3 +288,17 @@ Follow [Buf Documentation Guidelines](https://buf.build/docs/bsr/documentation) 
 4. All protobuf files are automatically formatted and linted on commit
 5. Schemas are pushed to BSR automatically on push for remote code generation
 6. Consumers access generated code via Go modules and npm packages from BSR
+
+## CI/CD Setup Requirements
+
+### GitHub Repository Secrets
+To enable automatic BSR publishing on releases, configure the following secret:
+- **`BUF_TOKEN`**: BSR authentication token for pushing schemas
+  - Generate at: https://buf.build/settings/user (User API Tokens)
+  - Required permissions: `repository:write` for `buf.build/pannpers/scaffold`
+
+### Release Process
+1. Create a GitHub release with semantic version tag (e.g., `v1.0.0`)
+2. GitHub Actions automatically runs `buf push --label 1.0.0` to BSR
+3. BSR generates code with the release label for consumer access
+4. Consumers can reference specific versions: `@buf/pannpers_scaffold.bufbuild_es@1.0.0`

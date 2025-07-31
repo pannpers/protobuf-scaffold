@@ -21,13 +21,6 @@ Please provide a high-level summary of the changes.
 
 - [ ] I have linked the related issue.
 - [ ] I have updated the relevant documentation (e.g., `README.md`) if needed.
-- [ ] I have run `buf lint`, `buf format`, and `buf generate` locally and all checks have passed.
-- [ ] Generated Go and TypeScript code compiles without errors.
-- [ ] My proto definitions follow the project's style guidelines.
-
-## 📋 Generated Code Sample
-
-<!--
-If applicable, include a sample of the generated code to demonstrate the changes.
-For example, show the Go struct or TypeScript interface that was generated.
--->
+- [ ] I have run `buf lint` and `buf format` locally and all checks have passed.
+- [ ] My proto definitions follow the project's style guidelines and validation rules.
+- [ ] Breaking changes have been justified and documented if applicable.
