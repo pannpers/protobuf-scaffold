@@ -7,7 +7,7 @@ on:
       - 'proto/**'
       - 'buf.yaml'
       - 'buf.gen.yaml'
-      - '.github/workflows/buf-pr.yml'
+      - '.github/workflows/buf-pr-checks.yml'
 
 permissions:
   contents: read

@@ -62,7 +62,7 @@ The repository uses multiple automation layers for quality control and deploymen
 - **Push hooks**: Push schemas to BSR for remote code generation
 
 #### GitHub Actions
-- **PR Workflow** (`.github/workflows/buf-pr.yml`): Runs on all PR events including label changes
+- **PR Workflow** (`.github/workflows/buf-pr-checks.yml`): Runs on all PR events including label changes
   - Buf lint validation
   - Format checking with `buf format --diff --exit-code`
   - Breaking change detection against base branch
@@ -76,7 +76,7 @@ The repository uses multiple automation layers for quality control and deploymen
 - `buf.gen.yaml` - Code generation plugin configuration for BSR
 - `.pre-commit-config.yaml` - Hook definitions for quality gates
 - `.mise/config.toml` - Tool version management
-- `.github/workflows/buf-pr.yml` - GitHub Actions for PR validation
+- `.github/workflows/buf-pr-checks.yml` - GitHub Actions for PR validation
 - `.github/workflows/buf-release.yml` - GitHub Actions for release automation
 
 ### Using Generated Code
