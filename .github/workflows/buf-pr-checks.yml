@@ -7,7 +7,11 @@ on:
       - 'proto/**'
       - 'buf.yaml'
       - 'buf.gen.yaml'
-      - '.github/workflows/buf-pr.yml'
+      - '.github/workflows/buf-pr-checks.yml'
+
+permissions:
+  contents: read
+  pull-requests: write
 
 jobs:
   buf-checks:
@@ -22,7 +26,7 @@ jobs:
       - name: Buf lint, format, breaking, and generate check
         uses: bufbuild/buf-action@v1
         with:
-          github_token: ${{ github.token }}
+          token: ${{ secrets.BUF_TOKEN }}
           push: false
           # Compare against the pull request's base branch in Git.
           # This is more robust than comparing against the BSR, as it avoids
