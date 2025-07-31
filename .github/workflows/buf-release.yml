@@ -19,4 +19,5 @@ jobs:
         uses: bufbuild/buf-action@v1
         with:
           token: ${{ secrets.BUF_TOKEN }}
-          input: 'buf push --label "${{ github.event.release.tag_name }}"'
+        env:
+          BUF_LABEL: ${{ github.event.release.tag_name }}
