@@ -12,7 +12,7 @@ body:
     attributes:
       label: 'Bug Description'
       description: 'A clear and concise description of what the bug is.'
-      placeholder: 'e.g., buf generate fails with import errors or generated code has compilation issues.'
+      placeholder: 'e.g., GitHub release fails to push to BSR, or BSR generated code has compilation issues.'
     validations:
       required: true
   - type: textarea
@@ -21,9 +21,11 @@ body:
       label: 'Steps to Reproduce'
       description: 'Steps to reproduce the behavior. Be as specific as possible.'
       placeholder: |
-        1. Run `buf generate` in the project root
-        2. Check the generated files in gen/ directory
-        3. Observe the compilation error in TypeScript/Go code
+        1. Create a GitHub release with version tag (e.g., v1.0.0)
+        2. Check GitHub Actions logs for BSR push status
+        3. Check BSR at buf.build/pannpers/scaffold for the new version
+        4. Install generated code: npm install @buf/pannpers_scaffold.bufbuild_es@1.0.0
+        5. Observe the compilation error in TypeScript/Go code
     validations:
       required: true
   - type: textarea
@@ -32,8 +34,8 @@ body:
       label: 'Expected vs Actual Behavior'
       description: 'What did you expect to happen vs what actually happened?'
       placeholder: |
-        **Expected:** buf generate should create Go and TypeScript files without errors
-        **Actual:** buf generate fails with "import not found" error
+        **Expected:** GitHub release should trigger automatic BSR push and generate code without errors
+        **Actual:** GitHub Actions fails with "BSR authentication error" or generated code has compilation issues
     validations:
       required: true
   - type: dropdown
@@ -46,6 +48,7 @@ body:
         - Local (Windows)
         - Local (Linux/WSL)
         - GitHub Actions (CI)
+        - BSR (buf.build)
         - mise environment
         - Other
     validations:

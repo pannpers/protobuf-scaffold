@@ -14,10 +14,10 @@ body:
       description: 'Describe the area you want to improve and explain why this change is valuable.'
       placeholder: |
         **Area of Improvement:**
-        The pre-commit hooks currently run `buf generate` on every push, which creates large diffs and unnecessary commits.
+        The BSR push workflow could be optimized with better caching or validation steps.
 
         **Motivation / Benefit:**
-        Optimizing the code generation workflow will reduce repository noise, improve git history clarity, and speed up the development cycle.
+        Optimizing the BSR integration will improve development velocity, reduce CI times, and provide better developer experience.
     validations:
       required: true
   - type: textarea
@@ -26,9 +26,9 @@ body:
       label: 'Proposed Solution / Implementation Ideas'
       description: 'Outline your proposed solution or ideas on how to implement the improvement.'
       placeholder: |
-        - **For Pre-commit:** Only run buf generate when .proto files have changed
-        - **For Documentation:** Add examples of common proto patterns in a docs/ directory
-        - **For CI:** Cache buf tools and dependencies to speed up GitHub Actions
+        - **For BSR Integration:** Add conditional buf push to only run when .proto files have changed
+        - **For Documentation:** Add examples of consuming generated code from BSR in a docs/ directory
+        - **For CI:** Cache buf tools and optimize BSR validation steps in GitHub Actions
     validations:
       required: true
   - type: textarea
